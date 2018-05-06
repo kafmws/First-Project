@@ -167,9 +167,12 @@
     <ClCompile Include="body.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="account.txt" />
+    <Text Include="account_admin.txt" />
+    <Text Include="account_stu.txt" />
     <Text Include="account_sign_up.txt" />
+    <Text Include="account_ter.txt" />
     <Text Include="grade-appeal.txt" />
+    <Text Include="sign_log.txt" />
     <Text Include="student.txt" />
     <Text Include="timetable.txt" />
   </ItemGroup>

@@ -52,9 +52,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="account.txt">
-      <Filter>资源文件</Filter>
-    </Text>
     <Text Include="student.txt">
       <Filter>资源文件</Filter>
     </Text>
@@ -65,6 +62,18 @@
       <Filter>资源文件</Filter>
     </Text>
     <Text Include="timetable.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="account_stu.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="account_ter.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="account_admin.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="sign_log.txt">
       <Filter>资源文件</Filter>
     </Text>
   </ItemGroup>

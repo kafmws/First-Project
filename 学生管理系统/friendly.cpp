@@ -7,14 +7,14 @@ char choice() {//界面选择
 	scanf("%s", num);//在switch-case里进行输入判断
 	rewind(stdin);
 	if (strlen(num) > 1) {
-		return '9';
+		return 'z';
 	}
 	return num[0];
 }
 
 int judge() {//确认操作的判断
 	int confirm=-1;
-	printf("是否确认该操作 ? (1/0)\n");
+	printf("是否确认本次操作 ? (1/0)\n");
 	rewind(stdin);
 	scanf("%d", &confirm);
 	if (confirm != 1 && confirm != 0) {
@@ -26,7 +26,7 @@ int judge() {//确认操作的判断
 
 int warning() {//确认操作的警告
 	int confirm=-1;
-	printf("该操作不可恢复QAQ，是否继续 ?(1/0)\n");
+	printf("该操作不可恢复QAQ，是否继续 ?(0/1)\n");
 	rewind(stdin);
 	scanf("%d", &confirm);
 	if (confirm != 1 && confirm != 0) {
@@ -37,30 +37,34 @@ int warning() {//确认操作的警告
 }
 
 void print_changeok() {//提示操作成功
-	printf("\n操作成功了的说！\n");rewind(stdin);
+	printf("操作成功了的说！\n");rewind(stdin);
 }
 
 void print_no() {//报告无此项
 	printf("抱歉，没有你要找的人的说（＞人＜；）\n");
-	printf("请确认后再来\n");
+	//printf("请确认后再来\n");
 	rewind(stdin);
 }
+
 void print_examinput() {
 	printf("输入不符合要求，请重试的说╮（╯＿╰）╭\n");
 	rewind(stdin);
 }
+
 void print_error() {//输入不合法
-	printf("对不起，不明白要干什么的说(￣▽￣)\"\n");
+	printf("对不起，不明白要做什么的说(￣▽￣)\"\n");
 	rewind(stdin);
 }
 
 void go_on() {
+	rewind(stdin);
 	printf("按任意键继续的说...\n");rewind(stdin);
 	getch();
 }
 
 void print_blankhead() {
 	printf("%-6s%6s      %6s    %-3s    %-3s    %-3s   %-3s    %-3s    %-3s\n", "姓名", "学号", "高数", "英语", "大物", "离散", "C语言", "体育","综合");
+	rewind(stdin);
 }
 
 void print_re() {
@@ -83,6 +87,24 @@ void print_timetable() {
 		print_re();
 		break;
 	}
-	printf("现在是%d年%d月%d日  星期%s   %2d : %02d\n", time_tm->tm_year + 1900, time_tm->tm_mon + 1,time_tm->tm_mday,weekday,time_tm->tm_hour,time_tm->tm_min);
-	printf("    第一节	    第二节	    第三节	    第四节\n");
+	printf("今天是%d年%d月%d日  星期%s \n", time_tm->tm_year + 1900, time_tm->tm_mon + 1,time_tm->tm_mday,weekday);
+	printf("      第一节	       第二节	         第三节	           第四节\n");
+}
+
+void print_subject() {//打印科目次序
+	int i;
+	for (i = 0;i < Subject;i++) {
+		printf("%d.%s	", i + 1, SUBJECT[i]);
+	}
+	printf("\n");rewind(stdin);
+}
+
+int print_enquiry() {//询问是否删除
+	printf("是否清空以上信息？(0/1)\n");rewind(stdin);
+	char judge = choice();
+	while (judge != '1'&&judge != '0') {
+		print_examinput();
+		judge = choice();
+	}
+	return  judge - '0';
 }
