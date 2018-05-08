@@ -57,39 +57,45 @@ int signin_judge(int n) {//账号密码的处理  n0:注册     1:登录    re  -2:账号不存
 	int flag = 0,re=0,cnt=0;
 	char *account=NULL;// = (char *)malloc(Name * sizeof(char));
 	char *password=NULL;// = (char *)malloc(PASS * sizeof(char));
-	account = accountname_get();
 	if (n == 0) {//注册
-		int i,flag=0;
-		char *stunumber = NULL;
-		printf("接下来输入另一项\n");rewind(stdin);
-		stunumber = accountname_get();
-		for (i = 0;i < STUNUM;i++) {
-			if (strcmp(account, account_stu[i].name) == 0 || strcmp(account, account_stu[i].stunum) == 0|| strcmp(stunumber, account_stu[i].name) == 0|| strcmp(stunumber, account_stu[i].stunum) == 0) {
-				printf("该用户名或学号已存在！╮（╯＿╰）╭\n");rewind(stdin);
-				flag = 1;
-				break;
+		if (validate()) {
+			account = accountname_get();
+			int i, flag = 0;
+			char *stunumber = NULL;
+			printf("接下来输入另一项\n"); rewind(stdin);
+			stunumber = accountname_get();
+			for (i = 0; i < STUNUM; i++) {
+				if (strcmp(account, account_stu[i].name) == 0 || strcmp(account, account_stu[i].stunum) == 0 || strcmp(stunumber, account_stu[i].name) == 0 || strcmp(stunumber, account_stu[i].stunum) == 0) {
+					printf("该用户名或学号已存在！╮（╯＿╰）╭\n"); rewind(stdin);
+					flag = 1;
+					break;
+				}
+			}if (flag == 0) {
+				char *password2 = (char *)malloc(PASS * sizeof(char));
+				char *phonenum = (char *)malloc(sizeof(char) * 19);
+				printf("请输入你的登录口令(6~12位)：\n"); rewind(stdin);
+				password = password_get();
+				printf("\n请再次输入：\n"); rewind(stdin);
+				password2 = password_get();
+				if (strcmp(password, password2) != 0) {
+					printf("\n两次输入不一致，请重新来过\n"); rewind(stdin);
+				}
+				else {
+					printf("\n请你的输入手机号(18位以内)：\n"); rewind(stdin);
+					scanf("%18s", phonenum);
+					FILE *fp = fopen(".\\account_sign_up.txt", "a+");
+					fprintf(fp, "%s\t%s\t%s\t%s\n", account, stunumber, password, phonenum);
+					fclose(fp);
+					printf("请等待管理员通知。\n"); rewind(stdin);
+				}
 			}
-		}if (flag == 0) {
-			char *password2 = (char *)malloc(PASS * sizeof(char));
-			char *phonenum = (char *)malloc(sizeof(char) * 19);
-			printf("请输入你的登录口令(6~12位)：\n");rewind(stdin);
-			password = password_get();
-			printf("\n请再次输入：\n");rewind(stdin);
-			password2 = password_get();
-			if (strcmp(password, password2) != 0) {
-				printf("\n两次输入不一致，请重新来过\n");rewind(stdin);
-			}
-			else {
-				printf("\n请你的输入手机号(18位以内)：\n");rewind(stdin);
-				scanf("%18s", phonenum);
-				FILE *fp = fopen(".\\account_sign_up.txt", "a+");
-				fprintf(fp, "%s\t%s\t%s\t%s\n", account,stunumber, password, phonenum);
-				fclose(fp);
-				printf("请等待管理员通知。\n");rewind(stdin);
-			}
+		}
+		else {
+			exit(0);
 		}
 	}
 	else if (n == 1) {//登录
+		account = accountname_get();
 		int i=-1;//i   结构体中的下标
 		i=account_cmp(account);
 		if (i == -1) {

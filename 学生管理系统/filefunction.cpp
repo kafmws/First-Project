@@ -28,7 +28,7 @@ void import_stu(List *list) {//读取学生信息到链表   evaluate每次重新计算
 	while(fscanf(fp, "%s	%s	%d",&tem.name,&tem.stunum,&tem.classes)!=EOF){
 		int sum=0;
 		node *p =(node *)malloc(sizeof(node));
-	p->next = NULL;
+		p->next = NULL;
 		for (int i = 0;i < Subject;i++) {
 			fscanf(fp,"%d", &tem.grade[i]);
 			sum += tem.grade[i];

@@ -131,5 +131,5 @@ void stu_add(data *ptem);//学生信息的添加
 void process_account();
 void password_change(char *obj, int i);//  i      1 :  加密     2:解密
 int log_get();//登录记录的读取及呈现
-
+int validate();//re: 0：验证失败  1：验证成功 
 //othersonfunctions.cpp
