@@ -1,10 +1,10 @@
-#include"stdafx.h"
+ï»¿#include"stdafx.h"
 #include"statements.h"
 
-char choice() {//½çÃæÑ¡Ôñ
+char choice() {//ç•Œé¢é€‰æ‹©
 	char num[100];
-	printf("ÇëÑ¡Ôñ£º\n");
-	scanf("%s", num);//ÔÚswitch-caseÀï½øĞĞÊäÈëÅĞ¶Ï
+	printf("è¯·é€‰æ‹©ï¼š\n");
+	scanf("%s", num);//åœ¨switch-caseé‡Œè¿›è¡Œè¾“å…¥åˆ¤æ–­
 	rewind(stdin);
 	if (strlen(num) > 1) {
 		return 'z';
@@ -12,9 +12,9 @@ char choice() {//½çÃæÑ¡Ôñ
 	return num[0];
 }
 
-int judge() {//È·ÈÏ²Ù×÷µÄÅĞ¶Ï
+int judge() {//ç¡®è®¤æ“ä½œçš„åˆ¤æ–­
 	int confirm=-1;
-	printf("ÊÇ·ñÈ·ÈÏ±¾´Î²Ù×÷ ? (1/0)\n");
+	printf("æ˜¯å¦ç¡®è®¤æœ¬æ¬¡æ“ä½œ ? (1/0)\n");
 	rewind(stdin);
 	scanf("%d", &confirm);
 	if (confirm != 1 && confirm != 0) {
@@ -24,9 +24,9 @@ int judge() {//È·ÈÏ²Ù×÷µÄÅĞ¶Ï
 	return confirm;
 }
 
-int warning() {//È·ÈÏ²Ù×÷µÄ¾¯¸æ
+int warning() {//ç¡®è®¤æ“ä½œçš„è­¦å‘Š
 	int confirm=-1;
-	printf("¸Ã²Ù×÷²»¿É»Ö¸´QAQ£¬ÊÇ·ñ¼ÌĞø ?(0/1)\n");
+	printf("è¯¥æ“ä½œä¸å¯æ¢å¤QAQï¼Œæ˜¯å¦ç»§ç»­ ?(0/1)\n");
 	rewind(stdin);
 	scanf("%d", &confirm);
 	if (confirm != 1 && confirm != 0) {
@@ -36,39 +36,39 @@ int warning() {//È·ÈÏ²Ù×÷µÄ¾¯¸æ
 	return confirm;
 }
 
-void print_changeok() {//ÌáÊ¾²Ù×÷³É¹¦
-	printf("²Ù×÷³É¹¦ÁËµÄËµ£¡\n");rewind(stdin);
+void print_changeok() {//æç¤ºæ“ä½œæˆåŠŸ
+	printf("æ“ä½œæˆåŠŸäº†çš„è¯´ï¼\n");rewind(stdin);
 }
 
-void print_no() {//±¨¸æÎŞ´ËÏî
-	printf("±§Ç¸£¬Ã»ÓĞÄãÒªÕÒµÄÈËµÄËµ£¨£¾ÈË£¼£»£©\n");
-	//printf("ÇëÈ·ÈÏºóÔÙÀ´\n");
+void print_no() {//æŠ¥å‘Šæ— æ­¤é¡¹
+	printf("æŠ±æ­‰ï¼Œæ²¡æœ‰ä½ è¦æ‰¾çš„äººçš„è¯´ï¼ˆï¼äººï¼œï¼›ï¼‰\n");
+	//printf("è¯·ç¡®è®¤åå†æ¥\n");
 	rewind(stdin);
 }
 
 void print_examinput() {
-	printf("ÊäÈë²»·ûºÏÒªÇó£¬ÇëÖØÊÔµÄËµ¨r£¨¨s£ß¨t£©¨q\n");
+	printf("è¾“å…¥ä¸ç¬¦åˆè¦æ±‚ï¼Œè¯·é‡è¯•çš„è¯´â•®ï¼ˆâ•¯ï¼¿â•°ï¼‰â•­\n");
 	rewind(stdin);
 }
 
-void print_error() {//ÊäÈë²»ºÏ·¨
-	printf("¶Ô²»Æğ£¬²»Ã÷°×Òª×öÊ²Ã´µÄËµ(£ş¨Œ£ş)\"\n");
+void print_error() {//è¾“å…¥ä¸åˆæ³•
+	printf("å¯¹ä¸èµ·ï¼Œä¸æ˜ç™½è¦åšä»€ä¹ˆçš„è¯´(ï¿£â–½ï¿£)\"\n");
 	rewind(stdin);
 }
 
 void go_on() {
 	rewind(stdin);
-	printf("°´ÈÎÒâ¼ü¼ÌĞøµÄËµ...\n");rewind(stdin);
+	printf("æŒ‰ä»»æ„é”®ç»§ç»­çš„è¯´...\n");rewind(stdin);
 	getch();
 }
 
 void print_blankhead() {
-	printf("%-6s%6s      %6s    %-3s    %-3s    %-3s   %-3s    %-3s    %-3s\n", "ĞÕÃû", "Ñ§ºÅ", "¸ßÊı", "Ó¢Óï", "´óÎï", "ÀëÉ¢", "CÓïÑÔ", "ÌåÓı","×ÛºÏ");
+	printf("%-6s%6s      %6s    %-3s    %-3s    %-3s   %-3s    %-3s    %-3s\n", "å§“å", "å­¦å·", "é«˜æ•°", "è‹±è¯­", "å¤§ç‰©", "ç¦»æ•£", "Cè¯­è¨€", "ä½“è‚²","ç»¼åˆ");
 	rewind(stdin);
 }
 
 void print_re() {
-	printf("·¢ÉúÆæ¹Ö´íÎóµÄËµqwqÇëÁªÏµ¿ª·¢ÕßQQ740721665\n");rewind(stdin);
+	printf("å‘ç”Ÿå¥‡æ€ªé”™è¯¯çš„è¯´qwqè¯·è”ç³»å¼€å‘è€…QQ740721665\n");rewind(stdin);
 	go_on();
 }
 
@@ -76,22 +76,22 @@ void print_timetable() {
 	initialize_time();
 	char *weekday = (char *)malloc(sizeof(char) * 6);
 	switch (time_tm->tm_wday ) {
-	case 1:strcpy(weekday, "Ò»");break;
-	case 2:strcpy(weekday, "¶ş");break;
-	case 3:strcpy(weekday, "Èı");break;
-	case 4:strcpy(weekday, "ËÄ");break;
-	case 5:strcpy(weekday, "Îå");break;
-	case 6:strcpy(weekday, "Áù");break;
-	case 7:strcpy(weekday, "ÈÕ");break;
+	case 1:strcpy(weekday, "ä¸€");break;
+	case 2:strcpy(weekday, "äºŒ");break;
+	case 3:strcpy(weekday, "ä¸‰");break;
+	case 4:strcpy(weekday, "å››");break;
+	case 5:strcpy(weekday, "äº”");break;
+	case 6:strcpy(weekday, "å…­");break;
+	case 7:strcpy(weekday, "æ—¥");break;
 	default:
 		print_re();
 		break;
 	}
-	printf("½ñÌìÊÇ%dÄê%dÔÂ%dÈÕ  ĞÇÆÚ%s \n", time_tm->tm_year + 1900, time_tm->tm_mon + 1,time_tm->tm_mday,weekday);
-	printf("      µÚÒ»½Ú	       µÚ¶ş½Ú	         µÚÈı½Ú	           µÚËÄ½Ú\n");
+	printf("ä»Šå¤©æ˜¯%då¹´%dæœˆ%dæ—¥  æ˜ŸæœŸ%s \n", time_tm->tm_year + 1900, time_tm->tm_mon + 1,time_tm->tm_mday,weekday);
+	printf("      ç¬¬ä¸€èŠ‚	       ç¬¬äºŒèŠ‚	         ç¬¬ä¸‰èŠ‚	           ç¬¬å››èŠ‚\n");
 }
 
-void print_subject() {//´òÓ¡¿ÆÄ¿´ÎĞò
+void print_subject() {//æ‰“å°ç§‘ç›®æ¬¡åº
 	int i;
 	for (i = 0;i < Subject;i++) {
 		printf("%d.%s	", i + 1, SUBJECT[i]);
@@ -99,8 +99,8 @@ void print_subject() {//´òÓ¡¿ÆÄ¿´ÎĞò
 	printf("\n");rewind(stdin);
 }
 
-int print_enquiry() {//Ñ¯ÎÊÊÇ·ñÉ¾³ı
-	printf("ÊÇ·ñÇå¿ÕÒÔÉÏĞÅÏ¢£¿(0/1)\n");rewind(stdin);
+int print_enquiry() {//è¯¢é—®æ˜¯å¦åˆ é™¤
+	printf("æ˜¯å¦æ¸…ç©ºä»¥ä¸Šä¿¡æ¯ï¼Ÿ(0/1)\n");rewind(stdin);
 	char judge = choice();
 	while (judge != '1'&&judge != '0') {
 		print_examinput();

@@ -1,8 +1,8 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include"statements.h"
 extern List Class;
 //extern char present[Name];
-void  add(List *list) {//Ôö¼ÓÑ§Éú  
+void  add(List *list) {//å¢åŠ å­¦ç”Ÿ  
 	data temp;
 	stu_add(&temp);
 	if (node *p=(node *)malloc(sizeof(node))) {
@@ -11,27 +11,27 @@ void  add(List *list) {//Ôö¼ÓÑ§Éú
 		list->tail->next = p;
 		list->tail = p;
 		FILE *fp = fopen(".\\account_sign_up.txt","a+");
-		fprintf(fp,"%s\t%s\t%s\t%sÀÏÊ¦Ìí¼Ó\n",p->element.name,p->element.stunum,"123456",present);
+		fprintf(fp,"%s\t%s\t%s\t%sè€å¸ˆæ·»åŠ \n",p->element.name,p->element.stunum,"123456",present);
 		fclose(fp);
-		printf("ÒÑÌáĞÑ¹ÜÀíÔ±·ÖÅäÕËºÅ\n");rewind(stdin);
+		printf("å·²æé†’ç®¡ç†å‘˜åˆ†é…è´¦å·\n");rewind(stdin);
 	}
 	else {
-		printf("Ê®·Ö±§Ç¸£¬²»ÄÜÔÙÌí¼Ó¸ü¶àÑ§ÉúÁË\n");
+		printf("ååˆ†æŠ±æ­‰ï¼Œä¸èƒ½å†æ·»åŠ æ›´å¤šå­¦ç”Ÿäº†\n");
 		print_re();
 	}
 }
 
-//°´»òĞÕÃûÑ§ºÅ²éÕÒname,stunum¾ùÎª×Ö·û´®
-int kill(List *list, char *obj) {//É¾
+//æŒ‰æˆ–å§“åå­¦å·æŸ¥æ‰¾name,stunumå‡ä¸ºå­—ç¬¦ä¸²
+int kill(List *list, char *obj) {//åˆ 
 	int re = 0;
 	node *p, *dead = NULL;
 	for (p = list->head;p->next;p = p->next) {
 		if (strcmp(p->next->element.stunum, obj) == 0 || strcmp(p->next->element.name, obj) == 0) {
 			if (find_classnum(&Class, p->next->element.name) == find_terclass(present)) {
-				//Í¨Öª¹ÜÀíÔ±É¾³ıÕËºÅ
+				//é€šçŸ¥ç®¡ç†å‘˜åˆ é™¤è´¦å·
 				dead = p->next;
 				FILE *fp = fopen(".\\account_sign_up.txt", "a+");
-				fprintf(fp, "%s	%s	%s	%sÀÏÊ¦É¾³ı", dead->element.name, dead->element.stunum, "  ", present);
+				fprintf(fp, "%s	%s	%s	%sè€å¸ˆåˆ é™¤", dead->element.name, dead->element.stunum, "  ", present);
 				fclose(fp);
 				p->next = dead->next;
 				free(dead);
@@ -39,15 +39,15 @@ int kill(List *list, char *obj) {//É¾
 				break;
 			}
 			else {
-				printf("Õâ¸öÑ§Éú²»ÊÇÄã°àµÄßÏ\n");rewind(stdin);
+				printf("è¿™ä¸ªå­¦ç”Ÿä¸æ˜¯ä½ ç­çš„å‘¦\n");rewind(stdin);
 			}
 		}
 	}
 	return re;
 }
 
-//°´»òĞÕÃûÑ§ºÅ²éÕÒ    ·µ»ØÄ¿±ê½ÚµãµÄÖ¸Õë
-node * change(List *list, char *obj) {//¸Ä
+//æŒ‰æˆ–å§“åå­¦å·æŸ¥æ‰¾    è¿”å›ç›®æ ‡èŠ‚ç‚¹çš„æŒ‡é’ˆ
+node * change(List *list, char *obj) {//æ”¹
 	node *p = list->head->next;
 	for (p;p;p = p->next) {
 		if (strcmp(p->element.stunum, obj) == 0 || strcmp(p->element.name, obj) == 0) {
@@ -61,20 +61,20 @@ node * change(List *list, char *obj) {//¸Ä
 void modify_grade(node *p) {
 	if (find_classnum(&Class, p->element.name) == find_terclass(present) || find_terclass(present) == -1) {
 		show_teacher();
-		printf("Ñ¡ÔñÄãÒª¸ü¸ÄµÄ¿ÆÄ¿£º\n");rewind(stdin);
+		printf("é€‰æ‹©ä½ è¦æ›´æ”¹çš„ç§‘ç›®ï¼š\n");rewind(stdin);
 		print_subject();
 		char judge = choice();
 		while (judge <'1'&&judge >'6') {
 			print_error();
-			printf("ÇëÖØĞÂÑ¡Ôñ\n");rewind(stdin);
+			printf("è¯·é‡æ–°é€‰æ‹©\n");rewind(stdin);
 			show_teacher();
-			printf("Ñ¡ÔñÄãÒª¸ü¸ÄµÄ¿ÆÄ¿£º\n");rewind(stdin);
+			printf("é€‰æ‹©ä½ è¦æ›´æ”¹çš„ç§‘ç›®ï¼š\n");rewind(stdin);
 			print_subject();
 			judge = choice();
 		}
 		int tem, exam = 0, sum = 0;
 		do {
-			printf("ÇëÊäÈëĞÂµÄ·ÖÊı£º\n");rewind(stdin);
+			printf("è¯·è¾“å…¥æ–°çš„åˆ†æ•°ï¼š\n");rewind(stdin);
 			scanf("%d", &tem);
 			if (0 > tem || tem > 100) {
 				print_examinput();
@@ -90,12 +90,12 @@ void modify_grade(node *p) {
 		print_changeok();
 	}
 	else {
-		printf("Õâ²»ÊÇÄã°àµÄÑ§ÉúßÏ\n");rewind(stdin);
+		printf("è¿™ä¸æ˜¯ä½ ç­çš„å­¦ç”Ÿå‘¦\n");rewind(stdin);
 	}
 }
 
-//±éÀú´òÓ¡Á´±íÄÚÈİ
-void print_all(List *list) {//±éÀúÊä³öËùÓĞ³É¼¨
+//éå†æ‰“å°é“¾è¡¨å†…å®¹
+void print_all(List *list) {//éå†è¾“å‡ºæ‰€æœ‰æˆç»©
 	node *p = list->head->next;
 	for (p;p;p = p->next) {
 		printf("%s %s ", p->element.name, p->element.stunum);
@@ -106,7 +106,7 @@ void print_all(List *list) {//±éÀúÊä³öËùÓĞ³É¼¨
 	}
 }
 
-void print_class(List *list) {//±éÀúÊä³ö±¾°à³É¼¨
+void print_class(List *list) {//éå†è¾“å‡ºæœ¬ç­æˆç»©
 	print_blankhead();
 	node *p = list->head->next;
 	for (p;p->next;p = p->next) {
@@ -120,7 +120,7 @@ void print_class(List *list) {//±éÀúÊä³ö±¾°à³É¼¨
 		}
 	}
 }
-//²é
+//æŸ¥
 void search(List *list, char *obj) {
 	int flaghead = 1,emm=0;
 	node *p = list->head->next;
@@ -135,27 +135,27 @@ void search(List *list, char *obj) {
 			printf("\n");rewind(stdin);emm = 1;
 			break;
 		}
-		else if (strstr(p->element.name, obj) != NULL || strstr(p->element.stunum, obj) != NULL) {//ÊäÈë²»ÍêÕûÓÃstrstr±È½Ï
+		else if (strstr(p->element.name, obj) != NULL || strstr(p->element.stunum, obj) != NULL) {//è¾“å…¥ä¸å®Œæ•´ç”¨strstræ¯”è¾ƒ
 			if (flaghead) {
 				flaghead = 0;
-				Sleep(500);printf("ÈÃÎÒÏëÏë");Sleep(1500);printf(" àÅ   ");Sleep(1500);
-				printf("Ò²ĞíÄãÒªÕÒµÄÊÇ:\n");rewind(stdin);emm = 2;//emm  2ÓĞÒÉËÆÏî   1ÕÒµ½ÁË
+				Sleep(500);printf("è®©æˆ‘æƒ³æƒ³");Sleep(1500);printf(" å—¯   ");Sleep(1500);
+				printf("ä¹Ÿè®¸ä½ è¦æ‰¾çš„æ˜¯:\n");rewind(stdin);emm = 2;//emm  2æœ‰ç–‘ä¼¼é¡¹   1æ‰¾åˆ°äº†
 			}
 			printf("%s %s\n", p->element.name, p->element.stunum);
 		}
 	}//if(emm==0) {print_no();}
-		if (emm==2) {//ÓĞÒÉËÆÏî
-				printf("ÇëÖØĞÂ²éÕÒ\n");rewind(stdin);
+		if (emm==2) {//æœ‰ç–‘ä¼¼é¡¹
+				printf("è¯·é‡æ–°æŸ¥æ‰¾\n");rewind(stdin);
 			}
 }
 
-void singlegrade_cnt(List *list,int classnum,char *object) {//Ñ§Éú¶Ë   ¼ÆËã²¢Êä³ö±¾°àÅÅÃû
+void singlegrade_cnt(List *list,int classnum,char *object) {//å­¦ç”Ÿç«¯   è®¡ç®—å¹¶è¾“å‡ºæœ¬ç­æ’å
 	node *p = list->head->next;
 	node *obj = change(list, object);
 	strcpy(object, obj->element.name);
 	int cnt[Subject] = { 1,1,1,1,1,1 },cnt_evaluate=1, i;
 	for (p;p;p = p->next) {
-		if (p->element.classes == classnum) {//classnumÎªfind_classnum
+		if (p->element.classes == classnum) {//classnumä¸ºfind_classnum
 			for (i = 0;i < Subject;i++) {
 				if (p->element.grade[i] > obj->element.grade[i]) {
 					cnt[i]++;
@@ -164,47 +164,47 @@ void singlegrade_cnt(List *list,int classnum,char *object) {//Ñ§Éú¶Ë   ¼ÆËã²¢Êä³
 		}
 		if (p->element.evaluate > obj->element.evaluate)
 			cnt_evaluate++;
-	}//¼ÆÊıÍê±Ï
-	printf("%sÍ¬Ñ§,%d°àÖĞ¸ßÊı³É¼¨ÅÅÔÚµÚ%dÃû£¬Ó¢Óï³É¼¨µÚ%dÃû,´óÎï³É¼¨µÚ%dÃû,ÀëÉ¢³É¼¨µÚ%dÃû,CÓïÑÔ³É¼¨µÚ%dÃû,ÌåÓı³É¼¨µÚ%dÃû,×ÛºÏ³É¼¨È«Äê¼¶%dÃû£¬Òª¼ÌĞø¼ÓÓÍÅ¶(? ?_?)?\n",object,classnum,cnt[0], cnt[1], cnt[2], cnt[3], cnt[4], cnt[5], cnt_evaluate);
+	}//è®¡æ•°å®Œæ¯•
+	printf("%såŒå­¦,%dç­ä¸­é«˜æ•°æˆç»©æ’åœ¨ç¬¬%dåï¼Œè‹±è¯­æˆç»©ç¬¬%då,å¤§ç‰©æˆç»©ç¬¬%då,ç¦»æ•£æˆç»©ç¬¬%då,Cè¯­è¨€æˆç»©ç¬¬%då,ä½“è‚²æˆç»©ç¬¬%då,ç»¼åˆæˆç»©å…¨å¹´çº§%dåï¼Œè¦ç»§ç»­åŠ æ²¹å“¦  >v<\n",object,classnum,cnt[0], cnt[1], cnt[2], cnt[3], cnt[4], cnt[5], cnt_evaluate);
 }
 
-void grade_analyze(List *list, int classnum, int i) {//i ±íÊ¾¿ÆÄ¿
+void grade_analyze(List *list, int classnum, int i) {//i è¡¨ç¤ºç§‘ç›®
 	if (i < 0 || i>5) { print_error(); }
 	else {
 		node *p = list->head->next;
 		double classaver = 0, majoraver = 0;
-		int class_cnt[2] = { 0 };// ÁĞÏÂ±ê[0]²»¼°¸ñÈËÊı   [1] ×î¸ß·Ö
-		int major_max = 0;//ÁĞÏÂ±ê [0]×î¸ß·Ö 
+		int class_cnt[2] = { 0 };// åˆ—ä¸‹æ ‡[0]ä¸åŠæ ¼äººæ•°   [1] æœ€é«˜åˆ†
+		int major_max = 0;//åˆ—ä¸‹æ ‡ [0]æœ€é«˜åˆ† 
 		for (p;p;p = p->next) {
-			if (p->element.classes == classnum||classnum==-1) {//Í³¼Æ±¾°à
-				if (p->element.grade[i] < 60) {//²»¼°¸ñÈËÊı
+			if (p->element.classes == classnum||classnum==-1) {//ç»Ÿè®¡æœ¬ç­
+				if (p->element.grade[i] < 60) {//ä¸åŠæ ¼äººæ•°
 					class_cnt[0]++;
 				}
-				if (p->element.grade[i] > class_cnt[1]) {//×î¸ß·Ö
+				if (p->element.grade[i] > class_cnt[1]) {//æœ€é«˜åˆ†
 					class_cnt[1] = p->element.grade[i];
 				}
 				classaver += p->element.grade[i];
-			}//Í³¼ÆÈ«×¨Òµ
+			}//ç»Ÿè®¡å…¨ä¸“ä¸š
 			if (p->element.grade[i] > major_max) {
 				major_max = p->element.grade[i];
 			}
 			majoraver += p->element.grade[i];
-		}//¸Ã¿ÆÄ¿·ÖÊı±éÀúÍê±Ï
-		//¼ÆËãÆ½¾ù·Ö
+		}//è¯¥ç§‘ç›®åˆ†æ•°éå†å®Œæ¯•
+		//è®¡ç®—å¹³å‡åˆ†
 		classaver /= 30;
 		majoraver /= STUNUM;
 		if (classnum == -1) { classaver = majoraver; }
-		printf("±¾°à%s³É¼¨%dÈË²»¼°¸ñ£¬×î¸ß·ÖÎª%d£¬Æ½¾ù·ÖÎª%.2f£¬È«×¨Òµ×î¸ß·Ö%d£¬Æ½¾ù·Ö%.2f¡£\n", SUBJECT[i], class_cnt[0], class_cnt[1], classaver, major_max, majoraver);
+		printf("æœ¬ç­%sæˆç»©%däººä¸åŠæ ¼ï¼Œæœ€é«˜åˆ†ä¸º%dï¼Œå¹³å‡åˆ†ä¸º%.2fï¼Œå…¨ä¸“ä¸šæœ€é«˜åˆ†%dï¼Œå¹³å‡åˆ†%.2fã€‚\n", SUBJECT[i], class_cnt[0], class_cnt[1], classaver, major_max, majoraver);
 	}
 }
 
-void initialize_linklist(List *Class) {//³õÊ¼»¯Á´±í
+void initialize_linklist(List *Class) {//åˆå§‹åŒ–é“¾è¡¨
 		node *p = (node *)malloc(sizeof(node));
 		p->next = NULL;
 		Class->head= Class->tail=p;
 	}
 
-void sort_stu(List *list,int i) {//¶ÔÑ§Éú½øĞĞÅÅĞò  0~5   subject³É¼¨   6×ÛºÏÆÀ¼Û   7Ñ§ºÅË³Ğò
+void sort_stu(List *list,int i) {//å¯¹å­¦ç”Ÿè¿›è¡Œæ’åº  0~5   subjectæˆç»©   6ç»¼åˆè¯„ä»·   7å­¦å·é¡ºåº
 	data tem;
 	if (0 <= i&&i < 6) {
 		for (int j = 1;j<STUNUM;j++)

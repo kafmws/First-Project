@@ -9,8 +9,6 @@ List Class;
 int main()
 { 
 	initialize();
-	
-	
     return 0;
 }
 void initialize() {

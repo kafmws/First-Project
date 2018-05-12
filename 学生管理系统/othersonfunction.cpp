@@ -1,9 +1,9 @@
-#include"stdafx.h"
+ï»¿#include"stdafx.h"
 #include"statements.h"
 extern List Class;
 extern struct tm *time_tm;
 
-int password_cmp(char *password,int i) {//-1:ÃÜÂë´íÎó   1£ºÑ§Éú      2£ºÀÏÊ¦    3£ºadmin
+int password_cmp(char *password,int i) {//-1:å¯†ç é”™è¯¯   1ï¼šå­¦ç”Ÿ      2ï¼šè€å¸ˆ    3ï¼šadmin
 	 int re=-1;//re stands for accountclass
 	 if (strcmp(password, account_stu[i].password) == 0&& (strlen(present) == 0 ? 1 : strcmp(present, account_stu[i].name) == 0)){
 		 re = 1;//strcpy_s(present, account_stu[i].name);
@@ -20,7 +20,7 @@ int password_cmp(char *password,int i) {//-1:ÃÜÂë´íÎó   1£ºÑ§Éú      2£ºÀÏÊ¦    
 	return re;
 }
 
-int account_cmp(char *account) {//-1:ÕËºÅ²»´æÔÚ   reÕËºÅÔÚ½á¹¹ÌåÊı×éÖĞµÄÏÂ±ê
+int account_cmp(char *account) {//-1:è´¦å·ä¸å­˜åœ¨   reè´¦å·åœ¨ç»“æ„ä½“æ•°ç»„ä¸­çš„ä¸‹æ ‡
 	int i,re=-1;
 	for (i = 0;i < STUNUM;i++) {
 		if (strcmp(account, account_stu[i].name) == 0||strcmp(account,account_stu[i].stunum)==0) {
@@ -48,7 +48,7 @@ int account_cmp(char *account) {//-1:ÕËºÅ²»´æÔÚ   reÕËºÅÔÚ½á¹¹ÌåÊı×éÖĞµÄÏÂ±ê
 	return re;
 }
 
-void initialize_time() {//»ñÈ¡µ±Ç°Ê±¼ä
+void initialize_time() {//è·å–å½“å‰æ—¶é—´
 	time_t now;
 	time(&now);
 	time_tm=localtime(&now);
@@ -57,48 +57,48 @@ void initialize_time() {//»ñÈ¡µ±Ç°Ê±¼ä
 char *greeting_get(int choice) {
 	char *re=(char *)malloc(sizeof(char)*160);
 	re[0] = '\0';
-	initialize_time();//»ñÈ¡µ±Ç°Ê±¼ä
-	switch (choice) {//1£ºÑ§Éú   2£ºÀÏÊ¦  3£º¹ÜÀíÔ±
+	initialize_time();//è·å–å½“å‰æ—¶é—´
+	switch (choice) {//1ï¼šå­¦ç”Ÿ   2ï¼šè€å¸ˆ  3ï¼šç®¡ç†å‘˜
 	case 1:
 		if (6 <= time_tm->tm_hour &&time_tm->tm_hour <= 7)
-			strcpy(re, "Ôç°²qwq£¬Ò»ÈÕÖ®¼ÆÔÚÓÚ³¿");
+			strcpy(re, "æ—©å®‰qwqï¼Œä¸€æ—¥ä¹‹è®¡åœ¨äºæ™¨");
 		else if (8 <= time_tm->tm_hour &&time_tm->tm_hour <= 10)
-			strcpy(re, "ÉÏÎçºÃO(¡É_¡É)O£¬½ñÌìÒ²ÔªÆøÂúÂú\\(^o^)/");
+			strcpy(re, "ä¸Šåˆå¥½O(âˆ©_âˆ©)Oï¼Œä»Šå¤©ä¹Ÿå…ƒæ°”æ»¡æ»¡\\(^o^)/");
 		else if (11 <= time_tm->tm_hour &&time_tm->tm_hour <= 13)
-			strcpy(re, "ÖĞÎçºÃ£¬ºÃÀ§°¡orz");
+			strcpy(re, "ä¸­åˆå¥½ï¼Œå¥½å›°å•Šorz");
 		else if (14 <= time_tm->tm_hour &&time_tm->tm_hour <= 18)
-			strcpy(re, "ÏÂÎçºÃ(¨R¦Ø¨Q),  QAQ½ñÌìÓĞÌÓ¿ÎÂğ?");
+			strcpy(re, "ä¸‹åˆå¥½(â‰§Ï‰â‰¦),  QAQä»Šå¤©æœ‰é€ƒè¯¾å—?");
 		else if (19 <= time_tm->tm_hour &&time_tm->tm_hour <= 22)
-			strcpy(re, "ÍíÉÏºÃqwq£¬¼ÇµÃĞ´×÷Òµ£¡£¡");
+			strcpy(re, "æ™šä¸Šå¥½qwqï¼Œè®°å¾—å†™ä½œä¸šï¼ï¼");
 		else {
-			strcpy(re, "¿ìÈ¥Ë¯¾õ£¬²»È»´ò±¬Äã¹·Í·£¡");
+			strcpy(re, "å¿«å»ç¡è§‰ï¼Œä¸ç„¶æ‰“çˆ†ä½ ç‹—å¤´ï¼");
 		}break;
 	case 2:
 		if (6 <= time_tm->tm_hour &&time_tm->tm_hour <= 11)
-			strcpy(re, "ÉÏÎçºÃ");
+			strcpy(re, "ä¸Šåˆå¥½");
 		else if (12 <= time_tm->tm_hour &&time_tm->tm_hour <= 1)
-			strcpy(re, "ÖĞÎçºÃ");
+			strcpy(re, "ä¸­åˆå¥½");
 		else if (2 <= time_tm->tm_hour &&time_tm->tm_hour <= 18)
-			strcpy(re, "ÏÂÎçºÃ");
+			strcpy(re, "ä¸‹åˆå¥½");
 		else if (19 <= time_tm->tm_hour &&time_tm->tm_hour <= 21)
-			strcpy(re, "ÍíÉÏºÃ");
+			strcpy(re, "æ™šä¸Šå¥½");
 		else {
-			strcpy(re, "Ò¹ÉîÁË£¬ÇëÔçµãĞİÏ¢");
+			strcpy(re, "å¤œæ·±äº†ï¼Œè¯·æ—©ç‚¹ä¼‘æ¯");
 		}break;
 	case 3:
 		if (6 <= time_tm->tm_hour &&time_tm->tm_hour <= 11)
-			strcpy(re, "Ğê£¬ÄãÖªµÀÂğ£¬ÎªÁË¼õÇáÄã(Ëû)µÄ¹¤×÷Á¿£¬¿ª·¢Õß\n		È¡ÏûÁËÄã¹ÜÀí³É¼¨µÄ¹¦ÄÜÓ´");
+			strcpy(re, "å˜˜ï¼Œä½ çŸ¥é“å—ï¼Œä¸ºäº†å‡è½»ä½ (ä»–)çš„å·¥ä½œé‡ï¼Œå¼€å‘è€…\n		å–æ¶ˆäº†ä½ ç®¡ç†æˆç»©çš„åŠŸèƒ½å“Ÿ");
 		else if (12 <= time_tm->tm_hour &&time_tm->tm_hour <= 1)
-			strcpy(re, "Ğê£¬ÎÒÊ²Ã´¶¼Ã»Ëµ");
+			strcpy(re, "å˜˜ï¼Œæˆ‘ä»€ä¹ˆéƒ½æ²¡è¯´");
 		else if (2 <= time_tm->tm_hour &&time_tm->tm_hour <= 18)
-			strcpy(re, "ÆäÊµÖ»¹ÜÀíÕËºÅÒ²Í¦ºÃµÄ2333");
+			strcpy(re, "å…¶å®åªç®¡ç†è´¦å·ä¹ŸæŒºå¥½çš„2333");
 		else if (19 <= time_tm->tm_hour &&time_tm->tm_hour <= 21)
-			strcpy(re, "ÍíÉÏºÃ£¬ÍµÍµ¸æËßÄã£¬ÆäÊµÊäÈë9\n		¾Í¿ÉÒÔ¹ÜÀí³É¼¨ÁËÅ¶");
+			strcpy(re, "æ™šä¸Šå¥½ï¼Œå·å·å‘Šè¯‰ä½ ï¼Œå…¶å®è¾“å…¥9\n		å°±å¯ä»¥ç®¡ç†æˆç»©äº†å“¦");
 		else {
-			strcpy(re, "Ò¹ÉîÁË£¬ÇëÔçµãĞİÏ¢");
+			strcpy(re, "å¤œæ·±äº†ï¼Œè¯·æ—©ç‚¹ä¼‘æ¯");
 		}break;
 	default:
-		printf("ÆäÊµÖ´ĞĞÕâÌõÓï¾äÊÇ²»¿ÉÄÜµÄ\n");
+		printf("å…¶å®æ‰§è¡Œè¿™æ¡è¯­å¥æ˜¯ä¸å¯èƒ½çš„\n");
 		print_re();
 		break;
 	}
@@ -106,11 +106,11 @@ char *greeting_get(int choice) {
 }
 
 void grade_appeal() {
-	printf("ÇëÒÀ´ÎÊäÈëÄãÏëÒªÉêËßµÄ¿ÆÄ¿Ãû³ÆÓëÀÏÊ¦ĞÕÃû\n");
-	printf("¿Õ¸ñ»ò»Ø³µ¸ô¿ª£º\n");rewind(stdin);
+	printf("è¯·ä¾æ¬¡è¾“å…¥ä½ æƒ³è¦ç”³è¯‰çš„ç§‘ç›®åç§°ä¸è€å¸ˆå§“å\n");
+	printf("ç©ºæ ¼æˆ–å›è½¦éš”å¼€ï¼š\n");rewind(stdin);
 	char *subject = (char *)malloc(sizeof(char) * 7);
 	char *teachername = (char *)malloc(sizeof(char) * 14);
-	if (scanf("%s %s", subject,teachername) != 2) {//ÊäÈë²»ÕıÈ·
+	if (scanf("%s %s", subject,teachername) != 2) {//è¾“å…¥ä¸æ­£ç¡®
 		rewind(stdin);
 		print_examinput();
 	}
@@ -122,29 +122,29 @@ void grade_appeal() {
 			}
 		}if (exam == 1) {
 			if (account_cmp(teachername) == -1) {
-				printf("Ã»ÓĞÕâ¸öÀÏÊ¦(>¦ä<),ÇëÈ·ÈÏºóÖØĞÂÀ´¹ı¡£\n");rewind(stdin);
+				printf("æ²¡æœ‰è¿™ä¸ªè€å¸ˆ(>ï¸¿<),è¯·ç¡®è®¤åé‡æ–°æ¥è¿‡ã€‚\n");rewind(stdin);
 			}
 			else if (find_classnum(&Class, present) == find_terclass(teachername)) {
 				if (find_classnum(&Class, present) == -1 || find_terclass(teachername) == -1) {
-					printf("°à¼¶²éÕÒ´íÎó£¡\n");
+					printf("ç­çº§æŸ¥æ‰¾é”™è¯¯ï¼\n");
 					print_re();
 				}
 				FILE *fp = fopen(".\\grade-appeal.txt", "a+");
 				fprintf(fp, "%s	%s	%s\n", present, subject, teachername);
 				fclose(fp);
-				printf("ÉêËßÒÑ±»Ìá½»£¬ÇëµÈ´ıÀÏÊ¦´¦Àí(/¦Ø£Ü)\n");rewind(stdin);
+				printf("ç”³è¯‰å·²è¢«æäº¤ï¼Œè¯·ç­‰å¾…è€å¸ˆå¤„ç†(/Ï‰ï¼¼)\n");rewind(stdin);
 			}
 			else {
-				printf("Õâ²»ÊÇÄãµÄÀÏÊ¦£¡(£ş_£ş|||)\n");rewind(stdin);
+				printf("è¿™ä¸æ˜¯ä½ çš„è€å¸ˆï¼(ï¿£_ï¿£|||)\n");rewind(stdin);
 			}
 		}
 		else {
-			printf("Ã»ÓĞÕâ¸ö¿ÆÄ¿(£ş_£ş|||)\n");rewind(stdin);
+			printf("æ²¡æœ‰è¿™ä¸ªç§‘ç›®(ï¿£_ï¿£|||)\n");rewind(stdin);
 		}
 	}
 }
 
-void process_stugrade() {//Ñ§Éú³É¼¨½çÃæµÄÑ¡Ôñ
+void process_stugrade() {//å­¦ç”Ÿæˆç»©ç•Œé¢çš„é€‰æ‹©
 	char tem, exam = 0;
 	switch (tem = choice()) {
 	case '0':break;
@@ -159,7 +159,7 @@ void process_stugrade() {//Ñ§Éú³É¼¨½çÃæµÄÑ¡Ôñ
 	}
 }
 
-int find_classnum(List* list,char *present) {//°´ÕËºÅ»òÑ§ºÅ·µ»Øµ±Ç°Ñ§ÉúËùÔÚ°à¼¶
+int find_classnum(List* list,char *present) {//æŒ‰è´¦å·æˆ–å­¦å·è¿”å›å½“å‰å­¦ç”Ÿæ‰€åœ¨ç­çº§
 	int classnum=-1;
 	node *p = list->head->next;
 	for (p;p;p = p->next) {
@@ -171,7 +171,7 @@ int find_classnum(List* list,char *present) {//°´ÕËºÅ»òÑ§ºÅ·µ»Øµ±Ç°Ñ§ÉúËùÔÚ°à¼¶
 	return classnum;
 }
 
-int find_terclass(char *account) {//°´Ãû²éÕÒÀÏÊ¦°à¼¶
+int find_terclass(char *account) {//æŒ‰åæŸ¥æ‰¾è€å¸ˆç­çº§
 	int i,re=-1;
 	for (i = 0;i < TERNUM;i++) {
 		if (strcmp(account, account_ter[i].name) == 0) {
@@ -182,26 +182,26 @@ int find_terclass(char *account) {//°´Ãû²éÕÒÀÏÊ¦°à¼¶
 	return re;
 }
 
-int modify_password(int i) {// xÕË»§ÀàĞÍ   i  ÒªĞŞ¸ÄµÄÕË»§ÏÂ±ê   
-	printf("ÇëÊäÈëÔ­¿ÚÁî£º\n");rewind(stdin);
+int modify_password(int i) {// xè´¦æˆ·ç±»å‹   i  è¦ä¿®æ”¹çš„è´¦æˆ·ä¸‹æ ‡   
+	printf("è¯·è¾“å…¥åŸå£ä»¤ï¼š\n");rewind(stdin);
 	char *password = (char *)malloc(sizeof(char)*PASS);
 	char *password2 = (char *)malloc(sizeof(char)*PASS);
 	password = password_get();
 	int x = password_cmp(password, i),re=0;
 	if (x==-1) {
-		printf("\n¿ÚÁî²»¶ÔÅ¶£¡\n");rewind(stdin);
+		printf("\nå£ä»¤ä¸å¯¹å“¦ï¼\n");rewind(stdin);
 	}
 	else {
-		printf("\nÊäÈëĞÂµÄ¿ÚÁîµÄËµ£º\n");rewind(stdin);
+		printf("\nè¾“å…¥æ–°çš„å£ä»¤çš„è¯´ï¼š\n");rewind(stdin);
 		password = password_get();
-		printf("\nÇëÔÙÊäÒ»´ÎµÄËµ£º\n");rewind(stdin);
+		printf("\nè¯·å†è¾“ä¸€æ¬¡çš„è¯´ï¼š\n");rewind(stdin);
 		password2 = password_get();
 		if (strcmp(password, password2) != 0) {
-			printf("\nÁ½´ÎÊäÈë²»Ò»ÖÂµÄËµ£¡ÖØĞÂÀ´¹ıµÄËµ\n");rewind(stdin);
+			printf("\nä¸¤æ¬¡è¾“å…¥ä¸ä¸€è‡´çš„è¯´ï¼é‡æ–°æ¥è¿‡çš„è¯´\n");rewind(stdin);
 		}
 		else {
 			re = 1;
-			switch (x) {//1:Ñ§Éú  2:ÀÏÊ¦   3:¹ÜÀíÔ±
+			switch (x) {//1:å­¦ç”Ÿ  2:è€å¸ˆ   3:ç®¡ç†å‘˜
 			case 1:strcpy(account_stu[i].password, password);break;
 			case 2:strcpy(account_ter[i].password, password);break;
 			case 3:strcpy(account_admin[i].password, password);break;
@@ -214,7 +214,7 @@ int modify_password(int i) {// xÕË»§ÀàĞÍ   i  ÒªĞŞ¸ÄµÄÕË»§ÏÂ±ê
 	return re;
 }
 
-void process_tergrade() {//½ÌÊ¦¶Ë³É¼¨²éÑ¯¹ı³Ì
+void process_tergrade() {//æ•™å¸ˆç«¯æˆç»©æŸ¥è¯¢è¿‡ç¨‹
 	char judge = choice(),exam=0,i;
 	switch (judge) {
 	case'0':break;
@@ -222,7 +222,7 @@ void process_tergrade() {//½ÌÊ¦¶Ë³É¼¨²éÑ¯¹ı³Ì
 	case'2':if (exam == 0) { singlegrade_analyze();exam = 2; }
 	case'3':if (exam == 0) { print_subject();grade_analyze(&Class, find_terclass(present), choice()- '1');exam = 3; }
 	case'4':if (exam == 0) {
-		print_subject();sort_stu(&Class, (i=choice() - '1')> 5 ? 9 :i);/*·ÀÖ¹¹¦ÄÜÔ½½ç*/
+		print_subject();sort_stu(&Class, (i=choice() - '1')> 5 ? 9 :i);/*é˜²æ­¢åŠŸèƒ½è¶Šç•Œ*/
 		print_class(&Class);rewind(stdin); exam = 4;}
 	case'5':if (exam == 0) {
 		sort_stu(&Class, 6);print_class(&Class);rewind(stdin); exam = 5;
@@ -231,7 +231,7 @@ void process_tergrade() {//½ÌÊ¦¶Ë³É¼¨²éÑ¯¹ı³Ì
 		sort_stu(&Class, 7);print_class(&Class);rewind(stdin);exam = 6;
 	}
 	case'7':if (exam == 0) {
-		printf("ÇëÑ¡ÔñÃûµ¥Ë³Ğò\n");print_subject();printf("7.×ÛºÏ	8.Ñ§ºÅ\n");rewind(stdin);sort_stu(&Class, choice() - '1');save_stu(1);print_changeok();exam = 7;
+		printf("è¯·é€‰æ‹©åå•é¡ºåº\n");print_subject();printf("7.ç»¼åˆ	8.å­¦å·\n");rewind(stdin);sort_stu(&Class, choice() - '1');save_stu(1);print_changeok();exam = 7;
 	}
 	default:
 		if (exam == 0) { print_error();go_on();
@@ -241,7 +241,7 @@ void process_tergrade() {//½ÌÊ¦¶Ë³É¼¨²éÑ¯¹ı³Ì
 	}
 }
 
-void singlegrade_print() {//°´Ñ§ºÅ»òÃû×Ö´òÓ¡¸öÈË³É¼¨
+void singlegrade_print() {//æŒ‰å­¦å·æˆ–åå­—æ‰“å°ä¸ªäººæˆç»©
 	char *obj = (char *)malloc(sizeof(char) * 100);
 	obj = accountname_get();
 	if (find_terclass(present) == find_classnum(&Class, obj)||find_terclass(present) == -1) {
@@ -249,53 +249,53 @@ void singlegrade_print() {//°´Ñ§ºÅ»òÃû×Ö´òÓ¡¸öÈË³É¼¨
 		search(&Class, obj);
 	}
 	else {
-		if (change(&Class, obj) != NULL) { printf("Õâ¸öÑ§Éú²»ÊÇÄã°àµÄÓ´~\n");rewind(stdin); }
+		if (change(&Class, obj) != NULL) { printf("è¿™ä¸ªå­¦ç”Ÿä¸æ˜¯ä½ ç­çš„å“Ÿ~\n");rewind(stdin); }
 		else { (search(&Class, obj));}
 	}
 }
 
-void singlegrade_analyze() {//½ÌÊ¦°´Ãû×Ö»òÑ§ºÅ·ÖÎö¸öÈË³É¼¨
+void singlegrade_analyze() {//æ•™å¸ˆæŒ‰åå­—æˆ–å­¦å·åˆ†æä¸ªäººæˆç»©
 	char *obj = (char *)malloc(sizeof(char) * 100);
 	obj = accountname_get();
 	int i = account_cmp(obj);
 	if (i != -1) {
-		if (strcmp(account_stu[i].name, obj) == 0 || strcmp(account_stu[i].stunum, obj) == 0) {//ÓĞ´ËÈË²¢ÇÒÊÇÑ§Éú
-			if (find_terclass(present) == find_classnum(&Class, obj)|| find_terclass(present)==-1) {//²¢ÇÒÓë½ÌÊ¦°à¼¶ÏàÍ¬   »òÕßÊÇ¹ÜÀíÔ±
+		if (strcmp(account_stu[i].name, obj) == 0 || strcmp(account_stu[i].stunum, obj) == 0) {//æœ‰æ­¤äººå¹¶ä¸”æ˜¯å­¦ç”Ÿ
+			if (find_terclass(present) == find_classnum(&Class, obj)|| find_terclass(present)==-1) {//å¹¶ä¸”ä¸æ•™å¸ˆç­çº§ç›¸åŒ   æˆ–è€…æ˜¯ç®¡ç†å‘˜
 				singlegrade_cnt(&Class, find_classnum(&Class, obj), obj);
 			}
-			else {//°à¼¶²»ÏàÍ¬
-				printf("Õâ¸öÑ§Éú²»ÊÇÄã°àµÄÓ´~\n");rewind(stdin);
+			else {//ç­çº§ä¸ç›¸åŒ
+				printf("è¿™ä¸ªå­¦ç”Ÿä¸æ˜¯ä½ ç­çš„å“Ÿ~\n");rewind(stdin);
 			}
 		}
 	}
-	else { print_no();search(&Class, obj); }//²éÎŞ´ËÈË
+	else { print_no();search(&Class, obj); }//æŸ¥æ— æ­¤äºº
 }
 
-void stu_add(data *ptem) {//Ñ§ÉúĞÅÏ¢µÄÌí¼Ó
+void stu_add(data *ptem) {//å­¦ç”Ÿä¿¡æ¯çš„æ·»åŠ 
 	int exam = 0, i,cnt=0;
 	double sum = 0;
 	ptem->evaluate = 0;
 	for (i = 0;i < Subject;i++) {
 		ptem->grade[i] = -1;
-	}//³õÊ¼»¯
+	}//åˆå§‹åŒ–
 	do {
-		printf("ÇëÊäÈëÑ§ÉúĞÕÃû:\n");rewind(stdin);
+		printf("è¯·è¾“å…¥å­¦ç”Ÿå§“å:\n");rewind(stdin);
 		scanf("%s", ptem->name);
-		for (i = 0;(unsigned)i < strlen(ptem->name);i++) {//¼ì²é·Ç·¨ÊäÈë
+		for (i = 0;(unsigned)i < strlen(ptem->name);i++) {//æ£€æŸ¥éæ³•è¾“å…¥
 			if (0 <= ptem->name[i] && ptem->name[i] <= 255) {
 				exam = 1;print_examinput();break;
 			}
 		}
-	} while (exam != 0&&(exam=0,1));//µÃµ½Ñ§ÉúĞÕÃû     ĞÕÃû²»Î¨Ò»   Ñ§ºÅÎ¨Ò»
+	} while (exam != 0&&(exam=0,1));//å¾—åˆ°å­¦ç”Ÿå§“å     å§“åä¸å”¯ä¸€   å­¦å·å”¯ä¸€
 	exam = 0;
 	do {
-		printf("ÇëÊäÈë°ËÎ»Ñ§ºÅ£º\n");rewind(stdin);
+		printf("è¯·è¾“å…¥å…«ä½å­¦å·ï¼š\n");rewind(stdin);
 		scanf("%s", ptem->stunum);
-		if (strlen(ptem->stunum) != 8) {//¼ì²éÎ»Êı
+		if (strlen(ptem->stunum) != 8) {//æ£€æŸ¥ä½æ•°
 			exam = 1;
 		}
 		if (0 == exam){
-			for (i = 0;(unsigned)i < strlen(ptem->stunum);i++) {//¼ì²é·Ç·¨ÊäÈë
+			for (i = 0;(unsigned)i < strlen(ptem->stunum);i++) {//æ£€æŸ¥éæ³•è¾“å…¥
 				if ('0' > ptem->stunum[i] || ptem->stunum[i] > '9') {
 					exam = 1;break;
 				}
@@ -304,29 +304,29 @@ void stu_add(data *ptem) {//Ñ§ÉúĞÅÏ¢µÄÌí¼Ó
 		if (0 == exam) {
 			node *p = NULL;
 			for (p = Class.head->next;p->next;p = p->next) {
-				if (strcmp(p->element.stunum, ptem->stunum) == 0) {//¼ì²éÖØ¸´Ñ§ºÅ
+				if (strcmp(p->element.stunum, ptem->stunum) == 0) {//æ£€æŸ¥é‡å¤å­¦å·
 					exam = 1;break;
 				}
 			}
 		}
 		if (exam) {
-			printf("Ñ§ºÅÊäÈëÓĞÎó»ò¸ÃÑ§ºÅÒÑ´æÔÚ£¡\n");
+			printf("å­¦å·è¾“å…¥æœ‰è¯¯æˆ–è¯¥å­¦å·å·²å­˜åœ¨ï¼\n");
 			rewind(stdin);
 		}
 	} while (exam != 0&&(exam=0,cnt++,1)&&cnt<2);
 	if (cnt == 2) {
 		show_teacher();
 	}show_teacher();
-	ptem->classes = atoi(ptem->stunum) % 100 / 30; //¼ÆËã°à¼¶
-	printf("ÊÇ·ñÂ¼Èë³É¼¨£¿(0/1):\n");rewind(stdin);
+	ptem->classes = atoi(ptem->stunum) % 100 / 30; //è®¡ç®—ç­çº§
+	printf("æ˜¯å¦å½•å…¥æˆç»©ï¼Ÿ(0/1):\n");rewind(stdin);
 	int judge = choice();
 	while (judge != '0'&&judge != '1') {
 		print_error();
-		printf("ÊÇ·ñÂ¼Èë³É¼¨£¿(0/1):\n");rewind(stdin);
+		printf("æ˜¯å¦å½•å…¥æˆç»©ï¼Ÿ(0/1):\n");rewind(stdin);
 		judge = choice();
-	}//Ñ¡Ôñ
+	}//é€‰æ‹©
 	if (judge == '1') {
-		printf("Çë°´ÕÕÒÔÏÂË³ĞòÂ¼Èë³É¼¨(0~100)£º\n");
+		printf("è¯·æŒ‰ç…§ä»¥ä¸‹é¡ºåºå½•å…¥æˆç»©(0~100)ï¼š\n");
 		for (i = 0;i < Subject;i++) {
 			printf("%s   ", SUBJECT[i]);
 		}
@@ -340,13 +340,13 @@ void stu_add(data *ptem) {//Ñ§ÉúĞÅÏ¢µÄÌí¼Ó
 		}
 	}
 	else if(judge=='0'){
-		printf("¸ÃÍ¬Ñ§ËùÓĞ³É¼¨½«Ä¬ÈÏÎª-1\n");rewind(stdin);
+		printf("è¯¥åŒå­¦æ‰€æœ‰æˆç»©å°†é»˜è®¤ä¸º-1\n");rewind(stdin);
 	}
 	else {
-		printf("ÆäÊµÖ´ĞĞ¸ÃÓï¾äÊÇ²»¿ÉÄÜµÄ\n");
+		printf("å…¶å®æ‰§è¡Œè¯¥è¯­å¥æ˜¯ä¸å¯èƒ½çš„\n");
 		print_re();
 	}
-	ptem->evaluate = sum / Subject;//¼ÆËã×ÛºÏ³É¼¨
+	ptem->evaluate = sum / Subject;//è®¡ç®—ç»¼åˆæˆç»©
 }
 
 void process_account() {
@@ -364,21 +364,21 @@ void process_account() {
 	}
 }
 
-void log(int i) {//i      1 £º³É¹¦µÇÂ½     0£ºÎ´³É¹¦µÇÂ½
+void log(int i) {//i      1 ï¼šæˆåŠŸç™»é™†     0ï¼šæœªæˆåŠŸç™»é™†
 	initialize_time();
 	char con[15];
 	if (i) {
-		strcpy(con, "³É¹¦");
+		strcpy(con, "æˆåŠŸ");
 	}
 	else {
-		strcpy(con, "Ê§°Ü");
+		strcpy(con, "å¤±è´¥");
 	}
 	FILE *fp = fopen(".\\sign_log.txt", "a+");
 	fprintf(fp, "%d-%d-%d	%02d:%02d	%s	%s\n", time_tm->tm_year+1900, time_tm->tm_mon, time_tm->tm_mday, time_tm->tm_hour, time_tm->tm_min, present,con);
 	fclose(fp);
  }
 
-void password_change(char *obj,int i) {//  i      1 :  ¼ÓÃÜ     2:½âÃÜ
+void password_change(char *obj,int i) {//  i      1 :  åŠ å¯†     2:è§£å¯†
 	if (i == 1) {
 		for (i = 0; i < strlen(obj); i++) {
 			obj[i] += i;
@@ -394,23 +394,23 @@ void password_change(char *obj,int i) {//  i      1 :  ¼ÓÃÜ     2:½âÃÜ
 	}
 }
 
-int validate() {//re: 0£ºÑéÖ¤Ê§°Ü  1£ºÑéÖ¤³É¹¦ 
+int validate() {//re: 0ï¼šéªŒè¯å¤±è´¥  1ï¼šéªŒè¯æˆåŠŸ 
 	char num[80], obj[8];
 	int re = 1,i;
-	printf("ÇëÊäÈëËæ»úÑéÖ¤Âë£º\n"); rewind(stdin);
+	printf("è¯·è¾“å…¥éšæœºéªŒè¯ç ï¼š\n"); rewind(stdin);
 	for ( i = 0; i < 6; i++) {
 		srand((unsigned int)time(NULL));
-		int number = rand() % 9 + 1;//²úÉú1~9µÄËæ»úÊı
+		int number = rand() % 9 + 1;//äº§ç”Ÿ1~9çš„éšæœºæ•°
 		printf("%d",number); obj[i] = number + '0';
 		Sleep(1000);
 	}obj[i] = '\0'; printf("\n"); rewind(stdin);
 	scanf("%s", num);
 	if (strcmp(num, obj) != 0) {
 		re = 0;
-		printf("ÑéÖ¤Ê§°Ü£¡\n");
+		printf("éªŒè¯å¤±è´¥ï¼\n");
 	}
 	if (re) {
-		printf("ÑéÖ¤³É¹¦\n"); Sleep(1000);
+		printf("éªŒè¯æˆåŠŸ\n"); Sleep(1000);
 		show_sign();
 	}
 	return re;
