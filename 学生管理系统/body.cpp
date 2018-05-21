@@ -208,7 +208,6 @@ void process_ter() {//教师端功能选择
 		case '1':show_tergrade();process_tergrade();exam = 1;
 		case '2':if (0 == exam) { add(&Class);sort_stu(&Class, 7);save_stu(0);printf("已通知管理员删除账号");exam = 2; }
 		case'3':if (0 == exam) {
-			
 			if (change(&Class, tem = accountname_get())) { if (warning()) { if (kill(&Class, tem)) { save_stu(0); print_changeok(); } } }exam = 3;
 		}
 		case'4':if (0 == exam) { if (change(&Class, tem = accountname_get())) { modify_grade(change(&Class, tem));save_stu(0);}exam = 4; }

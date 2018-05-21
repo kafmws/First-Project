@@ -396,14 +396,13 @@ void password_change(char *obj,int i) {//  i      1 :  加密     2:解密
 
 int validate() {//re: 0：验证失败  1：验证成功 
 	char num[80], obj[8];
-	int re = 1,i;
+	int re = 1;
 	printf("请输入随机验证码：\n"); rewind(stdin);
-	for ( i = 0; i < 6; i++) {
 		srand((unsigned int)time(NULL));
-		int number = rand() % 9 + 1;//产生1~9的随机数
-		printf("%d",number); obj[i] = number + '0';
-		Sleep(1000);
-	}obj[i] = '\0'; printf("\n"); rewind(stdin);
+		int number = rand() % 999999 + 1;//产生6位随机数
+		printf("%d",number);
+		itoa(number, obj,10);
+		printf("\n"); rewind(stdin);
 	scanf("%s", num);
 	if (strcmp(num, obj) != 0) {
 		re = 0;
