@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+#include "stdafx.h"
 #include"statements.h"
 extern List Class;
 //extern char present[Name];

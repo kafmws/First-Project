@@ -2,18 +2,18 @@
 #include"stdafx.h"
 #include<stdio.h>
 const int Name = 15, StuNum = 9, Subject = 6, PASS = 13,NEW=150;
-const char SUBJECT[Subject][6] = { "¸ßÊı", "Ó¢Óï", "´óÎï", "ÀëÉ¢", "CÓïÑÔ", "ÌåÓı" };
+const char SUBJECT[Subject][6] = { "é«˜æ•°", "è‹±è¯­", "å¤§ç‰©", "ç¦»æ•£", "Cè¯­è¨€", "ä½“è‚²" };
 extern int STUNUM , TERNUM , ADMINNUM;
 extern char present[Name];
 extern struct tm *time_tm;
 
 typedef struct student {
-	char name[Name];//ĞÕÃû
-	char stunum[StuNum];//Ñ§ºÅ
-	int classes;//°à¼¶
-	int grade[Subject];//³É¼¨
-	double evaluate;//×Û²â
-} data;//ÓÃ×÷²ÎÊı   Â¼ÈëÊı¾İÊ±½«´Ë½á¹¹Ìå×÷Îª²ÎÊı
+	char name[Name];//å§“å
+	char stunum[StuNum];//å­¦å·
+	int classes;//ç­çº§
+	int grade[Subject];//æˆç»©
+	double evaluate;//ç»¼æµ‹
+} data;//ç”¨ä½œå‚æ•°   å½•å…¥æ•°æ®æ—¶å°†æ­¤ç»“æ„ä½“ä½œä¸ºå‚æ•°
 
 typedef struct Linklist {
 	data element;
@@ -25,19 +25,19 @@ typedef struct ctrl {
 	node *tail;
 } List;
 
-typedef struct Acc1 {//Ñ§ÉúÕËºÅ
+typedef struct Acc1 {//å­¦ç”Ÿè´¦å·
 	char name[Name];
 	char stunum[StuNum];
 	char password[PASS];
 } StuAccount;
 
-typedef struct Acc2 {//ÀÏÊ¦ÕËºÅ
+typedef struct Acc2 {//è€å¸ˆè´¦å·
 	char name[Name];
 	int classs;
 	char password[PASS];
 } TerAccount;
 
-typedef struct Acc3 {//¹ÜÀíÔ±ÕËºÅ
+typedef struct Acc3 {//ç®¡ç†å‘˜è´¦å·
 	char name[Name];
 	char password[PASS];
 } AdminAccount;
@@ -47,27 +47,27 @@ extern TerAccount account_ter[Name];
 extern AdminAccount account_admin[3];
 
 
-//º¯ÊıÉùÃ÷
+//å‡½æ•°å£°æ˜
 void add(List *list);
 int kill(List *list, char *obj);
 node * change(List *list, char *obj);
 void print_all(List *list);
 void search(List *list, char *obj);
-void initialize_linklist(List *Class);//³õÊ¼»¯Á´±í
-void singlegrade_cnt(List *list, int classnum,char *object);//Ñ§Éú¶Ë   ¼ÆËã²¢Êä³ö±¾°àÅÅÃû
-void grade_analyze(List *list, int classnum,int i);//·ÖÎöÈ«°à³É¼¨,i±íÊ¾¿ÆÄ¿
-void print_class(List *list);//±éÀúÊä³ö±¾°à³É¼¨
-void modify_grade(node *p);//°´¿ÆÄ¿ĞŞ¸Ä³É¼¨²¢ÖØĞÂ¼ÆËã×Û²â
+void initialize_linklist(List *Class);//åˆå§‹åŒ–é“¾è¡¨
+void singlegrade_cnt(List *list, int classnum,char *object);//å­¦ç”Ÿç«¯   è®¡ç®—å¹¶è¾“å‡ºæœ¬ç­æ’å
+void grade_analyze(List *list, int classnum,int i);//åˆ†æå…¨ç­æˆç»©,iè¡¨ç¤ºç§‘ç›®
+void print_class(List *list);//éå†è¾“å‡ºæœ¬ç­æˆç»©
+void modify_grade(node *p);//æŒ‰ç§‘ç›®ä¿®æ”¹æˆç»©å¹¶é‡æ–°è®¡ç®—ç»¼æµ‹
 //Linklistfunction.cpp
 
-void show_sign();//µÇÂ¼½çÃæ
-void show_stu();//Ñ§Éú¶Ë×Ó²Ëµ¥
-void show_stugrade();//Ñ§Éú¶Ë³É¼¨²éÑ¯½çÃæ
-void show_teacher();//½ÌÊ¦¶Ë×Ó²Ëµ¥
-void show_tergrade();//½ÌÊ¦¶Ë³É¼¨²éÑ¯½çÃæ
-void show_admin();//¹ÜÀíÔ±×Ó²Ëµ¥
-void show_account();//¹ÜÀíÔ±ÕË»§¹ÜÀí½çÃæ
-void show_welcome();//Æ¤¿¨Çğ
+void show_sign();//ç™»å½•ç•Œé¢
+void show_stu();//å­¦ç”Ÿç«¯å­èœå•
+void show_stugrade();//å­¦ç”Ÿç«¯æˆç»©æŸ¥è¯¢ç•Œé¢
+void show_teacher();//æ•™å¸ˆç«¯å­èœå•
+void show_tergrade();//æ•™å¸ˆç«¯æˆç»©æŸ¥è¯¢ç•Œé¢
+void show_admin();//ç®¡ç†å‘˜å­èœå•
+void show_account();//ç®¡ç†å‘˜è´¦æˆ·ç®¡ç†ç•Œé¢
+void show_welcome();//çš®å¡ä¸˜
 //welcome page.cpp
 
 char choice();
@@ -77,59 +77,59 @@ void print_error();
 void print_no();
 void print_examinput();
 void go_on();
-void print_timetable();//´òÓ¡µ±Ç°Ê±¼ä
-void print_blankhead();//´òÓ¡³É¼¨µ¥±íÍ·
-void print_re();//Êä³ö»ØÀ¡ĞÅÏ¢
-void print_changeok();//ÌáÊ¾²Ù×÷³É¹¦
-void print_subject();//´òÓ¡¿ÆÄ¿±àºÅ
-int print_enquiry();//Ñ¯ÎÊÊÇ·ñÉ¾³ıÉêËß£¬×¢²áĞÅÏ¢
+void print_timetable();//æ‰“å°å½“å‰æ—¶é—´
+void print_blankhead();//æ‰“å°æˆç»©å•è¡¨å¤´
+void print_re();//è¾“å‡ºå›é¦ˆä¿¡æ¯
+void print_changeok();//æç¤ºæ“ä½œæˆåŠŸ
+void print_subject();//æ‰“å°ç§‘ç›®ç¼–å·
+int print_enquiry();//è¯¢é—®æ˜¯å¦åˆ é™¤ç”³è¯‰ï¼Œæ³¨å†Œä¿¡æ¯
 
 //friendly.cpp
 
 
-int signin_judge(int n);//ÕËºÅÃÜÂëµÄÅĞ¶Ï
-char *accountname_get();//µÃµ½ÓÃ»§Ãû²¢½øĞĞÊäÈëÅĞ¶Ï
-char *password_get();//¶ÁÈ¡ÃÜÂëÊäÈë²¢½øĞĞÊäÈëÅĞ¶Ï
-void process_sign();//µÇÂ¼¹ı³Ì
-void process_stu();//Ñ§ÉúÖ´ĞĞ¹ı³Ì
-void process_ter();//½ÌÊ¦Ö´ĞĞ¹ı³Ì
-void process_admin();//¹ÜÀíÔ±Ö´ĞĞ¹ı³Ì
+int signin_judge(int n);//è´¦å·å¯†ç çš„åˆ¤æ–­
+char *accountname_get();//å¾—åˆ°ç”¨æˆ·åå¹¶è¿›è¡Œè¾“å…¥åˆ¤æ–­
+char *password_get();//è¯»å–å¯†ç è¾“å…¥å¹¶è¿›è¡Œè¾“å…¥åˆ¤æ–­
+void process_sign();//ç™»å½•è¿‡ç¨‹
+void process_stu();//å­¦ç”Ÿæ‰§è¡Œè¿‡ç¨‹
+void process_ter();//æ•™å¸ˆæ‰§è¡Œè¿‡ç¨‹
+void process_admin();//ç®¡ç†å‘˜æ‰§è¡Œè¿‡ç¨‹
 //body.cpp
 
-void fileadd(node* p, data tem);//ÎÄ¼şËù¶ÁÄÚÈİ´æ´¢µ½Á´±í
-void import_stu(List *list);//¶ÁÈ¡ÎÄ¼şÄÚÈİµ½Á´±í
-void import_account();//¶ÁÈëÎÄ¼şÖĞµÄÕËºÅÃÜÂë
-void import_timetable();//¶ÁÈ¡²¢Êä³ö¿Î±í
-void save_account();//ÕËºÅ±£´æ
-void sort_stu(List *list, int i);//¶ÔÑ§Éú½øĞĞÅÅĞò  1~6   subject³É¼¨   7×ÛºÏÆÀ¼Û   8Ñ§ºÅË³Ğò
-int appeal_get();//¶ÁÈ¡²¢³ÊÏÖÉêËßĞÅÏ¢   0ÎŞÉêËß
-void save_stu(int i);//±£´æÑ§ÉúĞÅÏ¢   i  0:±£´æÑ§ÉúĞÅÏ¢  1£ºÏÂÔØµ½Ö¸¶¨ÎÄ¼şÄ¿Â¼
-void del_infomation(int i);//Çå¿ÕÉêËß»òÕËºÅÉêÇë  i  1: ÕËºÅÉêÇë   2:³É¼¨ÉêËß   3£ºµÇÂ¼¼ÇÂ¼
-int signup_get();//¶ÁÈ¡²¢³ÊÏÖÕËºÅÉêÇë    0 ÎŞÉêÇë  
-void account_appeal();//ÕËºÅÉêËß
-void account_print();//²é¿´ÕËºÅ
-void account_add();//Ôö¼ÓÕËºÅ
-void account_kill();//É¾³ıÕËºÅ
-void account_change();//ĞŞ¸ÄÕËºÅĞÅÏ¢
-void log(int i);//i      1 £º³É¹¦µÇÂ½     0£ºÎ´³É¹¦µÇÂ½
+void fileadd(node* p, data tem);//æ–‡ä»¶æ‰€è¯»å†…å®¹å­˜å‚¨åˆ°é“¾è¡¨
+void import_stu(List *list);//è¯»å–æ–‡ä»¶å†…å®¹åˆ°é“¾è¡¨
+void import_account();//è¯»å…¥æ–‡ä»¶ä¸­çš„è´¦å·å¯†ç 
+void import_timetable();//è¯»å–å¹¶è¾“å‡ºè¯¾è¡¨
+void save_account();//è´¦å·ä¿å­˜
+void sort_stu(List *list, int i);//å¯¹å­¦ç”Ÿè¿›è¡Œæ’åº  1~6   subjectæˆç»©   7ç»¼åˆè¯„ä»·   8å­¦å·é¡ºåº
+int appeal_get();//è¯»å–å¹¶å‘ˆç°ç”³è¯‰ä¿¡æ¯   0æ— ç”³è¯‰
+void save_stu(int i);//ä¿å­˜å­¦ç”Ÿä¿¡æ¯   i  0:ä¿å­˜å­¦ç”Ÿä¿¡æ¯  1ï¼šä¸‹è½½åˆ°æŒ‡å®šæ–‡ä»¶ç›®å½•
+void del_infomation(int i);//æ¸…ç©ºç”³è¯‰æˆ–è´¦å·ç”³è¯·  i  1: è´¦å·ç”³è¯·   2:æˆç»©ç”³è¯‰   3ï¼šç™»å½•è®°å½•
+int signup_get();//è¯»å–å¹¶å‘ˆç°è´¦å·ç”³è¯·    0 æ— ç”³è¯·  
+void account_appeal();//è´¦å·ç”³è¯‰
+void account_print();//æŸ¥çœ‹è´¦å·
+void account_add();//å¢åŠ è´¦å·
+void account_kill();//åˆ é™¤è´¦å·
+void account_change();//ä¿®æ”¹è´¦å·ä¿¡æ¯
+void log(int i);//i      1 ï¼šæˆåŠŸç™»é™†     0ï¼šæœªæˆåŠŸç™»é™†
 
 //filefunction.cpp
 
-int password_cmp(char *password, int i);//ÃÜÂëµÄ±È¶Ô   ·µ»ØËùÔÚÏÂ±ê  ²»´æÔÚ·µ»Ø-1
-int account_cmp(char *account);//ÕËºÅµÄ±È¶Ô   ·µ»ØÕËºÅÀàĞÍ   ÃÜÂë´íÎó·µ»Ø-1
-int find_classnum(List* list, char *present);//·µ»Øµ±Ç°Ñ§ÉúËùÔÚ°à¼¶
-void initialize_time();//»ñÈ¡µ±Ç°Ê±¼ä
-char *greeting_get(int choice);//ÎÊºòÓï»ñÈ¡   1:Ñ§Éú¶Ë    2:½ÌÊ¦¶Ë      3:¹ÜÀíÔ±¶Ë
-void grade_appeal();//³É¼¨ÉêËß
-int find_terclass(char *account);//°´Ãû²éÕÒÀÏÊ¦°à¼¶
-int modify_password(int i);//ÃÜÂëĞŞ¸Ä    0:Î´ĞŞ¸Ä   1£ºĞŞ¸Ä³É¹¦
-void process_stugrade();//Ñ§Éú³É¼¨½çÃæ¹ı³Ì
-void process_tergrade();//½ÌÊ¦³É¼¨½çÃæ¹ı³Ì
-void singlegrade_print();//½ÌÊ¦°´Ãû×Ö»òÑ§ºÅ²éÑ¯¸öÈË³É¼¨
-void singlegrade_analyze();//½ÌÊ¦°´Ãû×Ö»òÑ§ºÅ·ÖÎö¸öÈË³É¼¨
-void stu_add(data *ptem);//Ñ§ÉúĞÅÏ¢µÄÌí¼Ó
+int password_cmp(char *password, int i);//å¯†ç çš„æ¯”å¯¹   è¿”å›æ‰€åœ¨ä¸‹æ ‡  ä¸å­˜åœ¨è¿”å›-1
+int account_cmp(char *account);//è´¦å·çš„æ¯”å¯¹   è¿”å›è´¦å·ç±»å‹   å¯†ç é”™è¯¯è¿”å›-1
+int find_classnum(List* list, char *present);//è¿”å›å½“å‰å­¦ç”Ÿæ‰€åœ¨ç­çº§
+void initialize_time();//è·å–å½“å‰æ—¶é—´
+char *greeting_get(int choice);//é—®å€™è¯­è·å–   1:å­¦ç”Ÿç«¯    2:æ•™å¸ˆç«¯      3:ç®¡ç†å‘˜ç«¯
+void grade_appeal();//æˆç»©ç”³è¯‰
+int find_terclass(char *account);//æŒ‰åæŸ¥æ‰¾è€å¸ˆç­çº§
+int modify_password(int i);//å¯†ç ä¿®æ”¹    0:æœªä¿®æ”¹   1ï¼šä¿®æ”¹æˆåŠŸ
+void process_stugrade();//å­¦ç”Ÿæˆç»©ç•Œé¢è¿‡ç¨‹
+void process_tergrade();//æ•™å¸ˆæˆç»©ç•Œé¢è¿‡ç¨‹
+void singlegrade_print();//æ•™å¸ˆæŒ‰åå­—æˆ–å­¦å·æŸ¥è¯¢ä¸ªäººæˆç»©
+void singlegrade_analyze();//æ•™å¸ˆæŒ‰åå­—æˆ–å­¦å·åˆ†æä¸ªäººæˆç»©
+void stu_add(data *ptem);//å­¦ç”Ÿä¿¡æ¯çš„æ·»åŠ 
 void process_account();
-void password_change(char *obj, int i);//  i      1 :  ¼ÓÃÜ     2:½âÃÜ
-int log_get();//µÇÂ¼¼ÇÂ¼µÄ¶ÁÈ¡¼°³ÊÏÖ
-int validate();//re: 0£ºÑéÖ¤Ê§°Ü  1£ºÑéÖ¤³É¹¦ 
+void password_change(char *obj, int i);//  i      1 :  åŠ å¯†     2:è§£å¯†
+int log_get();//ç™»å½•è®°å½•çš„è¯»å–åŠå‘ˆç°
+int validate();//re: 0ï¼šéªŒè¯å¤±è´¥  1ï¼šéªŒè¯æˆåŠŸ 
 //othersonfunctions.cpp

@@ -1,4 +1,4 @@
-﻿#include"stdafx.h"
+#include"stdafx.h"
 #include"statements.h"
 
 char choice() {//界面选择

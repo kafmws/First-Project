@@ -1,4 +1,4 @@
-﻿#include"stdafx.h"
+#include"stdafx.h"
 #include"statements.h"
 int STUNUM, TERNUM, ADMINNUM=3;
 extern List Class;
