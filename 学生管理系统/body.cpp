@@ -7,10 +7,10 @@ TerAccount account_ter[Name];
 AdminAccount account_admin[3];
 
 
-void process_sign() {//ç™»å½•ç•Œé¢èœå•é€‰æ‹©
-	int exam = 0, cnt = 0, judgement = -1; //exam  ç”¨æ¥æ£€æŸ¥æ‰§è¡Œäº†å“ªä¸ªæ ‡ç­¾
+void process_sign() {//µÇÂ¼½çÃæ²Ëµ¥Ñ¡Ôñ
+	int exam = 0, cnt = 0, judgement = -1; //exam  ÓÃÀ´¼ì²éÖ´ĞĞÁËÄÄ¸ö±êÇ©
 	switch ( char judge = choice()) {
-	case '0':printf("å†è§ï¼\n");rewind(stdin);exit(0);break;
+	case '0':printf("ÔÙ¼û£¡\n");rewind(stdin);exit(0);break;
 	case '3':signin_judge(0);break;
 	case '1':
 			judgement = signin_judge(1);
@@ -31,13 +31,13 @@ void process_sign() {//ç™»å½•ç•Œé¢èœå•é€‰æ‹©
 			}exam = 1; 
 	case '2':if (exam == 0) {
 		while (cnt < 2 && judgement != 3) {
-			cnt++;printf("è¯·è¾“å…¥ç®¡ç†å‘˜å¯†ç ï¼š\n");rewind(stdin);
+			cnt++;printf("ÇëÊäÈë¹ÜÀíÔ±ÃÜÂë£º\n");rewind(stdin);
 			judgement = password_cmp(password_get(), 0);
 			if (judgement != 3) {
-				printf("\nå¯†ç é”™è¯¯ï¼\n");rewind(stdin);
+				printf("\nÃÜÂë´íÎó£¡\n");rewind(stdin);
 			}
 		}
-		if (cnt == 2) { printf("å³å°†é€€å‡ºçš„è¯´\n");Sleep(1000);exit(0); }
+		if (cnt == 2) { printf("¼´½«ÍË³öµÄËµ\n");Sleep(1000);exit(0); }
 		show_admin();
 		process_admin();
 	}exam = 2;break;
@@ -53,40 +53,40 @@ void process_sign() {//ç™»å½•ç•Œé¢èœå•é€‰æ‹©
 	}
 }
 
-int signin_judge(int n) {//è´¦å·å¯†ç çš„å¤„ç†  n0:æ³¨å†Œ     1:ç™»å½•    re  -2:è´¦å·ä¸å­˜åœ¨   -1ï¼šå¯†ç é”™è¯¯
+int signin_judge(int n) {//ÕËºÅÃÜÂëµÄ´¦Àí  n0:×¢²á     1:µÇÂ¼    re  -2:ÕËºÅ²»´æÔÚ   -1£ºÃÜÂë´íÎó
 	int flag = 0,re=0,cnt=0;
 	char *account=NULL;// = (char *)malloc(Name * sizeof(char));
 	char *password=NULL;// = (char *)malloc(PASS * sizeof(char));
-	if (n == 0) {//æ³¨å†Œ
+	if (n == 0) {//×¢²á
 		if (validate()) {
 			account = accountname_get();
 			int i, flag = 0;
 			char *stunumber = NULL;
-			printf("æ¥ä¸‹æ¥è¾“å…¥å¦ä¸€é¡¹\n"); rewind(stdin);
+			printf("½ÓÏÂÀ´ÊäÈëÁíÒ»Ïî\n"); rewind(stdin);
 			stunumber = accountname_get();
 			for (i = 0; i < STUNUM; i++) {
 				if (strcmp(account, account_stu[i].name) == 0 || strcmp(account, account_stu[i].stunum) == 0 || strcmp(stunumber, account_stu[i].name) == 0 || strcmp(stunumber, account_stu[i].stunum) == 0) {
-					printf("è¯¥ç”¨æˆ·åæˆ–å­¦å·å·²å­˜åœ¨ï¼â•®ï¼ˆâ•¯ï¼¿â•°ï¼‰â•­\n"); rewind(stdin);
+					printf("¸ÃÓÃ»§Ãû»òÑ§ºÅÒÑ´æÔÚ£¡¨r£¨¨s£ß¨t£©¨q\n"); rewind(stdin);
 					flag = 1;
 					break;
 				}
 			}if (flag == 0) {
 				char *password2 = (char *)malloc(PASS * sizeof(char));
 				char *phonenum = (char *)malloc(sizeof(char) * 19);
-				printf("è¯·è¾“å…¥ä½ çš„ç™»å½•å£ä»¤(6~12ä½)ï¼š\n"); rewind(stdin);
+				printf("ÇëÊäÈëÄãµÄµÇÂ¼¿ÚÁî(6~12Î»)£º\n"); rewind(stdin);
 				password = password_get();
-				printf("\nè¯·å†æ¬¡è¾“å…¥ï¼š\n"); rewind(stdin);
+				printf("\nÇëÔÙ´ÎÊäÈë£º\n"); rewind(stdin);
 				password2 = password_get();
 				if (strcmp(password, password2) != 0) {
-					printf("\nä¸¤æ¬¡è¾“å…¥ä¸ä¸€è‡´ï¼Œè¯·é‡æ–°æ¥è¿‡\n"); rewind(stdin);
+					printf("\nÁ½´ÎÊäÈë²»Ò»ÖÂ£¬ÇëÖØĞÂÀ´¹ı\n"); rewind(stdin);
 				}
 				else {
-					printf("\nè¯·ä½ çš„è¾“å…¥æ‰‹æœºå·(18ä½ä»¥å†…)ï¼š\n"); rewind(stdin);
+					printf("\nÇëÄãµÄÊäÈëÊÖ»úºÅ(18Î»ÒÔÄÚ)£º\n"); rewind(stdin);
 					scanf("%18s", phonenum);
 					FILE *fp = fopen(".\\account_sign_up.txt", "a+");
 					fprintf(fp, "%s\t%s\t%s\t%s\n", account, stunumber, password, phonenum);
 					fclose(fp);
-					printf("è¯·ç­‰å¾…ç®¡ç†å‘˜é€šçŸ¥ã€‚\n"); rewind(stdin);
+					printf("ÇëµÈ´ı¹ÜÀíÔ±Í¨Öª¡£\n"); rewind(stdin);
 				}
 			}
 		}
@@ -94,30 +94,30 @@ int signin_judge(int n) {//è´¦å·å¯†ç çš„å¤„ç†  n0:æ³¨å†Œ     1:ç™»å½•    re  
 			exit(0);
 		}
 	}
-	else if (n == 1) {//ç™»å½•
+	else if (n == 1) {//µÇÂ¼
 		account = accountname_get();
-		int i=-1;//i   ç»“æ„ä½“ä¸­çš„ä¸‹æ ‡
+		int i=-1;//i   ½á¹¹ÌåÖĞµÄÏÂ±ê
 		i=account_cmp(account);
 		if (i == -1) {
-			printf("è´¦å·ä¸å­˜åœ¨ï¼â•®ï¼ˆâ•¯ï¼¿â•°ï¼‰â•­\n");rewind(stdin);present[0] = '\0';
+			printf("ÕËºÅ²»´æÔÚ£¡¨r£¨¨s£ß¨t£©¨q\n");rewind(stdin);present[0] = '\0';
 			return -2;
 		}
 		else {
 			while(cnt < 2&&(re<=0)) {
-				if(cnt==0)printf("è¯·è¾“å…¥å£ä»¤(6~12ä½)ï¼š\n");rewind(stdin);
+				if(cnt==0)printf("ÇëÊäÈë¿ÚÁî(6~12Î»)£º\n");rewind(stdin);
 				password = password_get();
 				re = password_cmp(password, i);
-			if (re == -1 && i != -1) {//å¯†ç é”™è¯¯
-				printf("\nå£ä»¤é”™è¯¯â•®ï¼ˆâ•¯ï¼¿â•°ï¼‰â•­");rewind(stdin);
+			if (re == -1 && i != -1) {//ÃÜÂë´íÎó
+				printf("\n¿ÚÁî´íÎó¨r£¨¨s£ß¨t£©¨q");rewind(stdin);
 				if (cnt < 2) {
-					cnt++;if (cnt < 2) { printf("è¯·é‡æ–°è¾“å…¥:\n");rewind(stdin); }
-					if (cnt == 2) { printf("è¯·è¿›è¡Œè´¦å·ç”³è¯‰!\n");rewind(stdin);log(0);present[0] = '\0';  }
+					cnt++;if (cnt < 2) { printf("ÇëÖØĞÂÊäÈë:\n");rewind(stdin); }
+					if (cnt == 2) { printf("Çë½øĞĞÕËºÅÉêËß!\n");rewind(stdin);log(0);present[0] = '\0';  }
 					}
 				}
 			}
 		}
-		if(re!=-1&&i!=-1){//å¯†ç æ­£ç¡®  reè¡¨ç¤ºè´¦å·ç±»å‹
-			printf("\nç™»é™†æˆåŠŸ");log(1);
+		if(re!=-1&&i!=-1){//ÃÜÂëÕıÈ·  re±íÊ¾ÕËºÅÀàĞÍ
+			printf("\nµÇÂ½³É¹¦");log(1);
 			Sleep(1000);
 		}
 	}
@@ -126,9 +126,9 @@ int signin_judge(int n) {//è´¦å·å¯†ç çš„å¤„ç†  n0:æ³¨å†Œ     1:ç™»å½•    re  
 	return re;
 }
 
-char *accountname_get(){//è¯»å–ç”¨æˆ·åè¾“å…¥å¹¶è¿›è¡Œåˆ¤æ–­
+char *accountname_get(){//¶ÁÈ¡ÓÃ»§ÃûÊäÈë²¢½øĞĞÅĞ¶Ï
 	char *str=(char *)malloc(100*sizeof(char));
-	printf("è¯·è¾“å…¥ç”¨æˆ·åæˆ–å­¦å·ï¼š\n");
+	printf("ÇëÊäÈëÓÃ»§Ãû»òÑ§ºÅ£º\n");
 	rewind(stdin);
 	scanf("%s", str);
 	rewind(stdin);
@@ -140,7 +140,7 @@ char *accountname_get(){//è¯»å–ç”¨æˆ·åè¾“å…¥å¹¶è¿›è¡Œåˆ¤æ–­
 	return str;
 }
 
-char *password_get() {//è¯»å–å¯†ç è¾“å…¥å¹¶è¿›è¡Œåˆ¤æ–­
+char *password_get() {//¶ÁÈ¡ÃÜÂëÊäÈë²¢½øĞĞÅĞ¶Ï
 	int i,cnt=0;
 	char *str = (char *)malloc(PASS * sizeof(char)), c, flag = 1;
 	for (i = -1; i<PASS;) {
@@ -167,7 +167,7 @@ char *password_get() {//è¯»å–å¯†ç è¾“å…¥å¹¶è¿›è¡Œåˆ¤æ–­
 		else{
 			break;
 		}
-		printf("â—");
+		printf("¡ñ");
 	}
 	if (i == -1) {
 		str[0] = '\0';
@@ -184,7 +184,7 @@ char *password_get() {//è¯»å–å¯†ç è¾“å…¥å¹¶è¿›è¡Œåˆ¤æ–­
 	return str;
 }
 
-void process_stu() {//å­¦ç”ŸåŠŸèƒ½é€‰æ‹©
+void process_stu() {//Ñ§Éú¹¦ÄÜÑ¡Ôñ
 	char judge = choice(),exam=0;
 	switch (judge) {
 	case '0':show_welcome();break;
@@ -201,12 +201,12 @@ void process_stu() {//å­¦ç”ŸåŠŸèƒ½é€‰æ‹©
 	}
 }
 
-void process_ter() {//æ•™å¸ˆç«¯åŠŸèƒ½é€‰æ‹©
+void process_ter() {//½ÌÊ¦¶Ë¹¦ÄÜÑ¡Ôñ
 	char judge = choice(),exam=0;char *tem;
 		switch (judge) {
 		case '0':exit(0);break;
 		case '1':show_tergrade();process_tergrade();exam = 1;
-		case '2':if (0 == exam) { add(&Class);sort_stu(&Class, 7);save_stu(0);printf("å·²é€šçŸ¥ç®¡ç†å‘˜åˆ é™¤è´¦å·");exam = 2; }
+		case '2':if (0 == exam) { add(&Class);sort_stu(&Class, 7);save_stu(0);printf("ÒÑÍ¨Öª¹ÜÀíÔ±É¾³ıÕËºÅ");exam = 2; }
 		case'3':if (0 == exam) {
 			if (change(&Class, tem = accountname_get())) { if (warning()) { if (kill(&Class, tem)) { save_stu(0); print_changeok(); } } }exam = 3;
 		}

@@ -2,7 +2,7 @@
 #include"statements.h"
 int STUNUM, TERNUM, ADMINNUM=3;
 extern List Class;
-void import_account() {//è¯»å…¥æ–‡ä»¶ä¸­çš„è´¦å·å¯†ç 
+void import_account() {//¶ÁÈëÎÄ¼şÖĞµÄÕËºÅÃÜÂë
 	int i;
 	FILE *fp1=fopen(".\\account_stu.txt","r");
 	i = 0;
@@ -20,7 +20,7 @@ void import_account() {//è¯»å…¥æ–‡ä»¶ä¸­çš„è´¦å·å¯†ç 
 	fclose(fp3);
 }
 
-void import_stu(List *list) {//è¯»å–å­¦ç”Ÿä¿¡æ¯åˆ°é“¾è¡¨   evaluateæ¯æ¬¡é‡æ–°è®¡ç®—
+void import_stu(List *list) {//¶ÁÈ¡Ñ§ÉúĞÅÏ¢µ½Á´±í   evaluateÃ¿´ÎÖØĞÂ¼ÆËã
 	FILE *fp = fopen(".\\student.txt", "r");
 	//while (fscanf(fp, "%s	%s	%d	%d %d %d %d %d %d", tem.name,tem.stunum,tem.grade[0]) {
 	data tem;
@@ -40,7 +40,7 @@ void import_stu(List *list) {//è¯»å–å­¦ç”Ÿä¿¡æ¯åˆ°é“¾è¡¨   evaluateæ¯æ¬¡é‡æ–
 	}
 }
 
-void import_timetable() {//è¯»å–å¹¶è¾“å‡ºè¯¾è¡¨
+void import_timetable() {//¶ÁÈ¡²¢Êä³ö¿Î±í
 	char *tablestr = (char *)malloc(sizeof(char) * 80);
 	int day = time_tm->tm_wday;
 	if (1 <= day&&day <= 5) {
@@ -50,14 +50,14 @@ void import_timetable() {//è¯»å–å¹¶è¾“å‡ºè¯¾è¡¨
 		}
 		fclose(fp);
 		puts(tablestr);
-		printf("è®¤çœŸä¸Šè¯¾å“¦ï¼Œä¸ç„¶æ‰“çˆ†ä½ ç‹—å¤´(â•¯â€µ0â€²)â•¯ï¸µ â”´â”€â”´ \n");rewind(stdin);
+		printf("ÈÏÕæÉÏ¿ÎÅ¶£¬²»È»´ò±¬Äã¹·Í·(¨s¨F0¡ä)¨s¦à ©Ø©¤©Ø \n");rewind(stdin);
 	}
 	else {
-		printf("ä»Šå¤©æ²¡è¯¾å‘¢ï¼(ï¼â–½ï¼œ)\n");rewind(stdin);
+		printf("½ñÌìÃ»¿ÎÄØ£¡(£¾¨Œ£¼)\n");rewind(stdin);
 	}
 }
 
-void fileadd(node* p,data tem) {//æ–‡ä»¶ä¸­è¯»å–å­˜å‚¨åˆ°èŠ‚ç‚¹æ•°æ®åŸŸ
+void fileadd(node* p,data tem) {//ÎÄ¼şÖĞ¶ÁÈ¡´æ´¢µ½½ÚµãÊı¾İÓò
 	strcpy(p->element.name, tem.name), strcpy(p->element.stunum, tem.stunum), p->element.classes=tem.classes;
 	for (int i = 0;i < Subject;i++) {
 		p->element.grade[i] = tem.grade[i];
@@ -94,11 +94,11 @@ void save_account() {
 	print_changeok();
 }
 
-void save_stu(int i) {//ä¿å­˜å­¦ç”Ÿä¿¡æ¯   i  0:ä¿å­˜å­¦ç”Ÿä¿¡æ¯  1ï¼šä¸‹è½½åˆ°æŒ‡å®šæ–‡ä»¶ç›®å½•
+void save_stu(int i) {//±£´æÑ§ÉúĞÅÏ¢   i  0:±£´æÑ§ÉúĞÅÏ¢  1£ºÏÂÔØµ½Ö¸¶¨ÎÄ¼şÄ¿Â¼
 	char file[50];
-	if (i) {//ä¸‹è½½
-		printf("å»ºè®®ä½¿ç”¨TXTæ–‡ä»¶\n");
-		printf("è¯·ä»¥.\\\\xxx.xxçš„æ ¼å¼è¾“å…¥æ–‡ä»¶åï¼š\n");rewind(stdin);
+	if (i) {//ÏÂÔØ
+		printf("½¨ÒéÊ¹ÓÃTXTÎÄ¼ş\n");
+		printf("ÇëÒÔ.\\\\xxx.xxµÄ¸ñÊ½ÊäÈëÎÄ¼şÃû£º\n");rewind(stdin);
 		int exam = 0;
 		do {
 			scanf("%s", file);
@@ -108,9 +108,9 @@ void save_stu(int i) {//ä¿å­˜å­¦ç”Ÿä¿¡æ¯   i  0:ä¿å­˜å­¦ç”Ÿä¿¡æ¯  1ï¼šä¸‹è½½
 			}
 		} while (exam != 0 && (exam = 0, 1));
 	}
-	else if (i == 0) {//ä¿å­˜å­¦ç”Ÿä¿¡æ¯
+	else if (i == 0) {//±£´æÑ§ÉúĞÅÏ¢
 		strcpy(file, "student.txt");
-	}if (i) { printf("æ­£åœ¨ä¸‹è½½......\n");rewind(stdin); }
+	}if (i) { printf("ÕıÔÚÏÂÔØ......\n");rewind(stdin); }
 	FILE * fp = fopen(file, "w");
 	for (node *p = Class.head->next;p;p = p->next) {
 		fprintf(fp,"%s	%s	%d	%d	%d	%d	%d	%d	%d\n", p->element.name, p->element.stunum, p->element.classes, p->element.grade[0], p->element.grade[1], p->element.grade[2], p->element.grade[3], p->element.grade[4], p->element.grade[5]);
@@ -124,17 +124,17 @@ int appeal_get() {
 	FILE *fp = fopen("grade-appeal.txt", "r");
 	while (fscanf(fp, "%s	%s	%s", apper, sub, tername)!=EOF) {
 		if (strcmp(tername, present) == 0) {
-			printf("%sè®¤ä¸ºè‡ªå·±çš„%sæˆç»©æœ‰è¯¯ã€‚\n", apper, sub);rewind(stdin);exam = 1;
+			printf("%sÈÏÎª×Ô¼ºµÄ%s³É¼¨ÓĞÎó¡£\n", apper, sub);rewind(stdin);exam = 1;
 		}
 	}
 	if (0 == exam) {
-		printf("æ²¡æœ‰ä»»ä½•ç”³è¯‰å“¦\n");rewind(stdin);
+		printf("Ã»ÓĞÈÎºÎÉêËßÅ¶\n");rewind(stdin);
 	}
 	fclose(fp);
 	return exam;
 }
 
-int signup_get() {//è¯»å–å¹¶å‘ˆç°è´¦å·ç”³è¯·
+int signup_get() {//¶ÁÈ¡²¢³ÊÏÖÕËºÅÉêÇë
 	char str[4][100],c='0';
 	int re = 0;
 	FILE *fp = fopen(".\\account_sign_up.txt", "r");
@@ -142,29 +142,29 @@ int signup_get() {//è¯»å–å¹¶å‘ˆç°è´¦å·ç”³è¯·
 		fclose(fp);
 		FILE *fp = fopen(".\\account_sign_up.txt", "r");
 		while (fscanf(fp, "%s\t%s\t%s\t%s", str[0], str[1], str[2], str[3]) != EOF) {
-			printf("ä¿¡æ¯:  %s   %s  å£ä»¤æˆ–ä¿¡æ¯ç±»å‹ï¼š%s  ä¿¡æ¯æ¥æºï¼š%s\n", str[0], str[1], str[2], str[3]);
+			printf("ĞÅÏ¢:  %s   %s  ¿ÚÁî»òĞÅÏ¢ÀàĞÍ£º%s  ĞÅÏ¢À´Ô´£º%s\n", str[0], str[1], str[2], str[3]);
 		}
 		re = 1;
 	}
 	else {
-		printf("æš‚æ— ç”³è¯·\n");rewind(stdin);
+		printf("ÔİÎŞÉêÇë\n");rewind(stdin);
 	}
 	fclose(fp);
 	return re;
 }
 
-void account_appeal() {//è´¦å·ç”³è¯‰
-	printf("è¯·è¾“å…¥ç”¨æˆ·åã€å­¦å·ã€è€å¸ˆå§“åå’Œä½ çš„è”ç³»æ–¹å¼\n");
-	printf("ç©ºæ ¼æˆ–å›è½¦éš”å¼€ï¼š\n");rewind(stdin);
+void account_appeal() {//ÕËºÅÉêËß
+	printf("ÇëÊäÈëÓÃ»§Ãû¡¢Ñ§ºÅ¡¢ÀÏÊ¦ĞÕÃûºÍÄãµÄÁªÏµ·½Ê½\n");
+	printf("¿Õ¸ñ»ò»Ø³µ¸ô¿ª£º\n");rewind(stdin);
 	char str[4][50];
 	scanf("%s%s%s%s", str[0], str[1], str[2], str[3]);
 	FILE *fp = fopen(".\\account_sign_up.txt", "a+");
-	fprintf(fp, "%s	%s	%så­¦ç”Ÿç”³è¯‰	%s\n", str[0], str[1], str[2], str[3]);
+	fprintf(fp, "%s	%s	%sÑ§ÉúÉêËß	%s\n", str[0], str[1], str[2], str[3]);
 	fclose(fp);
-	printf("è¯·ç­‰å¾…ç®¡ç†å‘˜é€šçŸ¥\n");rewind(stdin);
+	printf("ÇëµÈ´ı¹ÜÀíÔ±Í¨Öª\n");rewind(stdin);
 }
 
-void del_infomation(int i) {//æ¸…ç©ºç”³è¯‰æˆ–è´¦å·ç”³è¯·  i  1: è´¦å·ç”³è¯·   2:æˆç»©ç”³è¯‰   3:è´¦å·ç™»å½•è®°å½•
+void del_infomation(int i) {//Çå¿ÕÉêËß»òÕËºÅÉêÇë  i  1: ÕËºÅÉêÇë   2:³É¼¨ÉêËß   3:ÕËºÅµÇÂ¼¼ÇÂ¼
 	char obj[30];
 	if (i == 1) {
 		strcpy(obj, ".\\account_sign_up.txt");
@@ -182,19 +182,19 @@ void del_infomation(int i) {//æ¸…ç©ºç”³è¯‰æˆ–è´¦å·ç”³è¯·  i  1: è´¦å·ç”³è¯·   
 	fclose(fp);
 }
 
-void account_add() {//å¢åŠ è´¦å·
+void account_add() {//Ôö¼ÓÕËºÅ
 	char name[Name], stunumber[25], password[PASS],exam=0;
-	printf("è¯·è¾“å…¥å§“åï¼š\n");rewind(stdin);
+	printf("ÇëÊäÈëĞÕÃû£º\n");rewind(stdin);
 		do {
 			scanf("%s", name);
-			for (int i = 0;(unsigned)i < strlen(name);i++) {//æ£€æŸ¥éæ³•è¾“å…¥
+			for (int i = 0;(unsigned)i < strlen(name);i++) {//¼ì²é·Ç·¨ÊäÈë
 				if (0 <= name[i] && name[i] <= 255) {
 					exam = 1;print_examinput();break;
 				}
 			}
 		} while (exam != 0 && (exam = 0, 1));
-		printf("è¯·è¾“å…¥ä¹ä½å­¦å·ï¼š\n");rewind(stdin);
-		do {//å­¦å·æ£€æŸ¥
+		printf("ÇëÊäÈë¾ÅÎ»Ñ§ºÅ£º\n");rewind(stdin);
+		do {//Ñ§ºÅ¼ì²é
 			scanf("%s", stunumber);
 				if (strlen(stunumber)!=8) {
 					exam = 1;
@@ -202,21 +202,21 @@ void account_add() {//å¢åŠ è´¦å·
 					print_examinput();
 				}
 				for (int i = 0;i < STUNUM;i++) {
-					if (strcmp(account_stu[i].stunum, stunumber) == 0) {//æŸ¥é‡
-						printf("è¯¥å­¦å·å·²å­˜åœ¨ï¼è¯·é‡æ–°è¾“å…¥ï¼š\n");exam = 1;
+					if (strcmp(account_stu[i].stunum, stunumber) == 0) {//²éÖØ
+						printf("¸ÃÑ§ºÅÒÑ´æÔÚ£¡ÇëÖØĞÂÊäÈë£º\n");exam = 1;
 					}
 				}
 				
 		} while (exam != 0 && (exam = 0, 1));
-		printf("å·²è‡ªåŠ¨è®¾ç½®åˆå§‹å¯†ç \n");rewind(stdin);
+		printf("ÒÑ×Ô¶¯ÉèÖÃ³õÊ¼ÃÜÂë\n");rewind(stdin);
 		FILE *fp = fopen(".\\account_stu.txt", "a+");
 		fprintf(fp,"%s	%s	%s\n", name, stunumber,"123456");
 		fclose(fp);
-		import_account();//é‡æ–°åŠ è½½æ–‡ä»¶
+		import_account();//ÖØĞÂ¼ÓÔØÎÄ¼ş
 }
 
-void account_print() {//æŸ¥çœ‹è´¦å·
-	printf("1.æ•™å¸ˆè´¦å·   2.å­¦ç”Ÿè´¦å·\n"); rewind(stdin);
+void account_print() {//²é¿´ÕËºÅ
+	printf("1.½ÌÊ¦ÕËºÅ   2.Ñ§ÉúÕËºÅ\n"); rewind(stdin);
 	int judge = choice()-'0';
 	while (judge != 1 && judge != 2) {
 		print_examinput();
@@ -227,26 +227,26 @@ void account_print() {//æŸ¥çœ‹è´¦å·
 	if (i != -1) {
 		if (judge == 2 ) {
 			if((strcmp(account, account_stu[i].name)==0 || strcmp(account, account_stu[i].stunum)==0))
-			printf("ç”¨æˆ·å:%s	 å­¦å·:%s	å¯†ç %s\n", account_stu[i].name, account_stu[i].stunum, account_stu[i].password);
+			printf("ÓÃ»§Ãû:%s	 Ñ§ºÅ:%s	ÃÜÂë%s\n", account_stu[i].name, account_stu[i].stunum, account_stu[i].password);
 			else {
-				printf("è¿™ä¸ªäººä¸æ˜¯å­¦ç”Ÿå“Ÿ\n"); rewind(stdin);
+				printf("Õâ¸öÈË²»ÊÇÑ§ÉúÓ´\n"); rewind(stdin);
 			}
 		}else if (judge == 1) {
 			if(strcmp(account, account_ter[i].name)==0)
-			printf("ç”¨æˆ·å:%s	 ç­çº§:%d	å¯†ç %s\n", account_ter[i].name, account_ter[i].classs, account_ter[i].password); 
+			printf("ÓÃ»§Ãû:%s	 °à¼¶:%d	ÃÜÂë%s\n", account_ter[i].name, account_ter[i].classs, account_ter[i].password); 
 			else {
-				printf("è¿™ä¸ªäººä¸æ˜¯è€å¸ˆå“Ÿ\n"); rewind(stdin);
+				printf("Õâ¸öÈË²»ÊÇÀÏÊ¦Ó´\n"); rewind(stdin);
 			}
 		}
 	}
-	else { printf("è´¦å·ä¸å­˜åœ¨ï¼"); }
+	else { printf("ÕËºÅ²»´æÔÚ£¡"); }
 }
 
-void account_kill() {//åˆ é™¤è´¦å·
+void account_kill() {//É¾³ıÕËºÅ
 	char *account = accountname_get();
 	int i = account_cmp(account);
 	if (i == -1) {
-		printf("è´¦å·ä¸å­˜åœ¨!\n");
+		printf("ÕËºÅ²»´æÔÚ!\n");
 	}
 	else {
 		if (warning()) {
@@ -258,8 +258,8 @@ void account_kill() {//åˆ é™¤è´¦å·
 	
 }
 
-void account_change() {//ä¿®æ”¹è´¦å·
-	printf("1.æ•™å¸ˆè´¦å·   2.å­¦ç”Ÿè´¦å·\n"); rewind(stdin);
+void account_change() {//ĞŞ¸ÄÕËºÅ
+	printf("1.½ÌÊ¦ÕËºÅ   2.Ñ§ÉúÕËºÅ\n"); rewind(stdin);
 	int judgement = choice() - '0';
 	while (judgement != 1 && judgement != 2) {
 		print_examinput();
@@ -270,21 +270,21 @@ void account_change() {//ä¿®æ”¹è´¦å·
 	show_account();
 	if (judgement == 2) {
 		if (strcmp(account, account_stu[i].name) != 0 && strcmp(account, account_stu[i].stunum) != 0) {
-			printf("è¿™ä¸æ˜¯å­¦ç”Ÿè´¦å·å“Ÿ\n"); rewind(stdin);
+			printf("Õâ²»ÊÇÑ§ÉúÕËºÅÓ´\n"); rewind(stdin);
 			return;
 		}
 		if (i != -1) {
-			printf("1.ç”¨æˆ·å 2.å­¦ç”Ÿå­¦å· 3.ç™»å½•å£ä»¤\n"); rewind(stdin);
+			printf("1.ÓÃ»§Ãû 2.Ñ§ÉúÑ§ºÅ 3.µÇÂ¼¿ÚÁî\n"); rewind(stdin);
 			char judgement = choice();
 			while (judgement != '1'&&judgement != '2'&&judgement != '3') {
 				print_examinput();
 				judgement = choice();
 			}
-			int exam = 0; char name[50]; printf("è¯·è¾“å…¥:\n"); rewind(stdin);
+			int exam = 0; char name[50]; printf("ÇëÊäÈë:\n"); rewind(stdin);
 			switch (judgement) {
 			case'1':do {
 				scanf("%s", name);
-				for (j = 0; (unsigned)j < strlen(name); j++) {//æ£€æŸ¥éæ³•è¾“å…¥
+				for (j = 0; (unsigned)j < strlen(name); j++) {//¼ì²é·Ç·¨ÊäÈë
 					if (0 <= name[j] && name[j] <= 255) {
 						exam = 1; print_examinput(); break;
 					}
@@ -310,25 +310,25 @@ void account_change() {//ä¿®æ”¹è´¦å·
 				break;
 			}
 		}
-		else { printf("è´¦å·ä¸å­˜åœ¨ï¼"); }
+		else { printf("ÕËºÅ²»´æÔÚ£¡"); }
 	}
 	else if (judgement == 1) {
 		if (strcmp(account, account_ter[i].name) != 0 ) {
-			printf("è¿™ä¸æ˜¯æ•™å¸ˆè´¦å·å“Ÿ\n"); rewind(stdin);
+			printf("Õâ²»ÊÇ½ÌÊ¦ÕËºÅÓ´\n"); rewind(stdin);
 			return;
 		}
 		if (i != -1) {
-			printf("1.ç”¨æˆ·å 2.æ•™å¸ˆç­çº§ 3.ç™»å½•å£ä»¤\n"); rewind(stdin);
+			printf("1.ÓÃ»§Ãû 2.½ÌÊ¦°à¼¶ 3.µÇÂ¼¿ÚÁî\n"); rewind(stdin);
 			char judgement = choice();
 			while (judgement != '1'&&judgement != '2'&&judgement != '3') {
 				print_examinput();
 				judgement = choice();
 			}
-			int exam = 0; char name[50]; printf("è¯·è¾“å…¥:\n"); rewind(stdin);
+			int exam = 0; char name[50]; printf("ÇëÊäÈë:\n"); rewind(stdin);
 			switch (judgement) {
 			case'1':do {
 				scanf("%s", name);
-				for (j = 0; (unsigned)j < strlen(name); j++) {//æ£€æŸ¥éæ³•è¾“å…¥
+				for (j = 0; (unsigned)j < strlen(name); j++) {//¼ì²é·Ç·¨ÊäÈë
 					if (0 <= name[j] && name[j] <= 255) {
 						exam = 1; print_examinput(); break;
 					}
@@ -356,7 +356,7 @@ void account_change() {//ä¿®æ”¹è´¦å·
 			}
 		}
 		else {
-			printf("è´¦å·ä¸å­˜åœ¨ï¼");
+			printf("ÕËºÅ²»´æÔÚ£¡");
 		}
 	}
 	else {
@@ -371,13 +371,13 @@ void account_change() {//ä¿®æ”¹è´¦å·
 	}
 }
 
-int log_get() {//ç™»å½•è®°å½•çš„è¯»å–åŠå‘ˆç°
+int log_get() {//µÇÂ¼¼ÇÂ¼µÄ¶ÁÈ¡¼°³ÊÏÖ
 	char str[4][50], re = 0, c;
 	FILE *fp = fopen(".\\sign_log.txt", "r");
 	if (c = fgetc(fp), c = fgetc(fp) && c != EOF) {
 		fclose(fp);
-		printf("ä»¥ä¸‹æ˜¯è¿‘æ—¥ç™»å½•è®°å½•:\n"); 
-		printf("æ—¶é—´			ç”¨æˆ·å		ç™»å½•çŠ¶å†µï¼š\n"); rewind(stdin);
+		printf("ÒÔÏÂÊÇ½üÈÕµÇÂ¼¼ÇÂ¼:\n"); 
+		printf("Ê±¼ä			ÓÃ»§Ãû		µÇÂ¼×´¿ö£º\n"); rewind(stdin);
 		FILE *fp = fopen(".\\sign_log.txt", "r");
 		while (fscanf(fp, "%s\t%s\t%s\t%s", str[0], str[1], str[2],str[3]) != EOF) {
 			printf("%s  %s          %-6s             %-6s\n", str[0], str[1], str[2], str[3]);
@@ -385,7 +385,7 @@ int log_get() {//ç™»å½•è®°å½•çš„è¯»å–åŠå‘ˆç°
 		re = 1;
 	}
 	else {
-		printf("æš‚æ— è®°å½•\n"); rewind(stdin);
+		printf("ÔİÎŞ¼ÇÂ¼\n"); rewind(stdin);
 	}
 	fclose(fp);
 	return re;
