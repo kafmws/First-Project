@@ -145,6 +145,7 @@ char *password_get() {//读取密码输入并进行判断
 	char *str = (char *)malloc(PASS * sizeof(char)), c, flag = 1;
 	for (i = -1; i<PASS;) {
 		c = getch();
+		getch();
 		if (c != '\r'&&c != 8) {
 			if (flag) {
 				flag = 0;
