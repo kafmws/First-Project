@@ -60,6 +60,7 @@ void go_on() {
 	rewind(stdin);
 	printf("按任意键继续的说...\n");rewind(stdin);
 	getch();
+	getch();
 }
 
 void print_blankhead() {

@@ -142,8 +142,10 @@ char *accountname_get(){//读取用户名输入并进行判断
 
 char *password_get() {//读取密码输入并进行判断
 	int i,cnt=0;
-	char *str = (char *)malloc(PASS * sizeof(char)), c, flag = 1;
+	char *str = (char *)malloc(PASS * sizeof(char)), c,p, flag = 1;
+	rewind(stdin);
 	for (i = -1; i<PASS;) {
+		rewind(stdin);
 		c = getch();
 		getch();
 		if (c != '\r'&&c != 8) {
@@ -192,7 +194,7 @@ void process_stu() {//学生功能选择
 	case '1':show_stugrade();process_stugrade();exam = 1;
 	case '2':if (exam == 0) { print_timetable();import_timetable();}exam = 2;
 	case '3':if (exam == 0) {
-		if (modify_password(account_cmp(present))) { save_account(); }
+		if (modify_password(account_cmp(present))) { save_account(); import_account(); }
 	}exam = 3;
 	default:
 		if (exam == 0) {
